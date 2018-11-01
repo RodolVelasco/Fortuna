@@ -1,0 +1,353 @@
+<?php
+
+namespace AppBundle\Form;
+
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
+class ProfileType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+
+        $builder
+            ->add('nombre')
+            ->add('apellido')
+            ->add('telefono')
+            ->add('dui')
+            ->add('username')
+            ->add('email')
+            ->add('fechaNacimiento', null, array(
+                'label' => 'Fecha de nacimiento',
+                'widget' => 'single_text',
+                'html5' => false,
+            ))
+            ->add('sexo')
+            ->add('departamentoMunicipio', ChoiceType::class, array(
+                    'label' => 'Depto / municipio donde recide',
+                    'placeholder' => 'Seleccione uno',
+                    'choices'  => array(
+                        'Ahuachapán' => array(
+                            "Ahuachapán - Ahuachapán"=>"Ahuachapán",
+                            "Ahuachapán - Atiquizaya"=>"Atiquizaya",
+                            "Ahuachapán - San Francisco Menéndez"=>"San Francisco Menéndez",
+                            "Ahuachapán - Tacuba"=>"Tacuba",
+                            "Ahuachapán - Concepción De Ataco"=>"Concepción De Ataco",
+                            "Ahuachapán - Jujutla"=>"Jujutla",
+                            "Ahuachapán - Guaymango"=>"Guaymango",
+                            "Ahuachapán - Apaneca"=>"Apaneca",
+                            "Ahuachapán - San Pedro Puxtla"=>"San Pedro Puxtla",
+                            "Ahuachapán - San Lorenzo"=>"San Lorenzo",
+                            "Ahuachapán - Turin"=>"Turin",
+                            "Ahuachapán - El Refugio"=>"El Refugio",
+                        ),
+                        'Cabañas' => array(
+                            "Cabañas - Sensuntepeque"=>"Sensuntepeque",
+                            "Cabañas - Ilobasco"=>"Ilobasco",
+                            "Cabañas - Victoria"=>"Victoria",
+                            "Cabañas - San Isidro"=>"San Isidro",
+                            "Cabañas - Jutiapa"=>"Jutiapa",
+                            "Cabañas - Tejutepeque"=>"Tejutepeque",
+                            "Cabañas - Dolores"=>"Dolores",
+                            "Cabañas - Cinquera"=>"Cinquera",
+                            "Cabañas - Guacotecti"=>"Guacotecti",
+                        ),
+                        'Chalatenango' => array(
+                            "Chalatenango - Chalatenango"=>"Chalatenango",
+                            "Chalatenango - Nueva Concepcion"=>"Nueva Concepcion",
+                            "Chalatenango - La Palma"=>"La Palma",
+                            "Chalatenango - Tejutla"=>"Tejutla",
+                            "Chalatenango - La Reina"=>"La Reina",
+                            "Chalatenango - Arcatao"=>"Arcatao",
+                            "Chalatenango - San Ignacio"=>"San Ignacio",
+                            "Chalatenango - Dulce Nombre De Maria"=>"Dulce Nombre De Maria",
+                            "Chalatenango - Citala"=>"Citala",
+                            "Chalatenango - Agua Caliente"=>"Agua Caliente",
+                            "Chalatenango - Concepcion Quezaltepeque"=>"Concepcion Quezaltepeque",
+                            "Chalatenango - Nueva Trinidad"=>"Nueva Trinidad",
+                            "Chalatenango - Las Vueltas"=>"Las Vueltas",
+                            "Chalatenango - Comalapa"=>"Comalapa",
+                            "Chalatenango - San Rafael"=>"San Rafael",
+                            "Chalatenango - Las Flores"=>"Las Flores",
+                            "Chalatenango - Ojos De Agua"=>"Ojos De Agua",
+                            "Chalatenango - Nombre De Jesus"=>"Nombre De Jesus",
+                            "Chalatenango - Potonico"=>"Potonico",
+                            "Chalatenango - San Francisco Morazan"=>"San Francisco Morazan",
+                            "Chalatenango - Santa Rita"=>"Santa Rita",
+                            "Chalatenango - La Laguna"=>"La Laguna",
+                            "Chalatenango - San Isidro Labrador"=>"San Isidro Labrador",
+                            "Chalatenango - San Antonio De La Cruz"=>"San Antonio De La Cruz",
+                            "Chalatenango - El Paraiso"=>"El Paraiso",
+                            "Chalatenango - San Miguel De Mercedes"=>"San Miguel De Mercedes",
+                            "Chalatenango - San Luis Del Carmen"=>"San Luis Del Carmen",
+                            "Chalatenango - San Jose Cancasque"=>"San Jose Cancasque",
+                            "Chalatenango - San Antonio Los Ranchos"=>"San Antonio Los Ranchos",
+                            "Chalatenango - El Carrizal"=>"El Carrizal",
+                            "Chalatenango - San Fernando"=>"San Fernando",
+                            "Chalatenango - Azacualpa"=>"Azacualpa",
+                            "Chalatenango - San Francisco Lempa"=>"San Francisco Lempa",
+                        ),
+                        'Cuscatlán' => array(
+                            "Cuscatlán - Cojutepeque"=>"Cojutepeque",
+                            "Cuscatlán - Suchitoto"=>"Suchitoto",
+                            "Cuscatlán - San Pedro Perulapan"=>"San Pedro Perulapan",
+                            "Cuscatlán - San Jose Guayabal"=>"San Jose Guayabal",
+                            "Cuscatlán - Tenancingo"=>"Tenancingo",
+                            "Cuscatlán - San Rafael Cedros"=>"San Rafael Cedros",
+                            "Cuscatlán - Candelaria"=>"Candelaria",
+                            "Cuscatlán - El Carmen"=>"El Carmen",
+                            "Cuscatlán - Monte San Juan"=>"Monte San Juan",
+                            "Cuscatlán - San Cristobal"=>"San Cristobal",
+                            "Cuscatlán - Santa Cruz Michapa"=>"Santa Cruz Michapa",
+                            "Cuscatlán - San Bartolome Perulapia"=>"San Bartolome Perulapia",
+                            "Cuscatlán - San Ramon"=>"San Ramon",
+                            "Cuscatlán - El Rosario"=>"El Rosario",
+                            "Cuscatlán - Oratorio De Concepcion"=>"Oratorio De Concepcion",
+                            "Cuscatlán - Santa Cruz Analquito"=>"Santa Cruz Analquito",
+                        ),
+                        'La Libertad' => array(
+                            "La Libertad - Santa Tecla"=>"Santa Tecla",
+                            "La Libertad - Quezaltepeque"=>"Quezaltepeque",
+                            "La Libertad - Ciudad Arce"=>"Ciudad Arce",
+                            "La Libertad - San Juan Opico"=>"San Juan Opico",
+                            "La Libertad - Colon"=>"Colon",
+                            "La Libertad - La Libertad"=>"La Libertad",
+                            "La Libertad - Antiguo Cuscatlan"=>"Antiguo Cuscatlan",
+                            "La Libertad - Comasagua"=>"Comasagua",
+                            "La Libertad - San Pablo Tacachico"=>"San Pablo Tacachico",
+                            "La Libertad - Jayaque"=>"Jayaque",
+                            "La Libertad - Huizucar"=>"Huizucar",
+                            "La Libertad - Tepecoyo"=>"Tepecoyo",
+                            "La Libertad - Teotepeque"=>"Teotepeque",
+                            "La Libertad - Chiltiupan"=>"Chiltiupan",
+                            "La Libertad - Nuevo Cuscatlan"=>"Nuevo Cuscatlan",
+                            "La Libertad - Tamanique"=>"Tamanique",
+                            "La Libertad - Sacacoyo"=>"Sacacoyo",
+                            "La Libertad - San Jose Villanueva"=>"San Jose Villanueva",
+                            "La Libertad - Zaragoza"=>"Zaragoza",
+                            "La Libertad - Talnique"=>"Talnique",
+                            "La Libertad - San Matias"=>"San Matias",
+                            "La Libertad - Jicalapa"=>"Jicalapa",
+                        ),
+                        'La Paz' => array(
+                            "La Paz - Zacatecoluca"=>"Zacatecoluca",
+                            "La Paz - Santiago Nonualco"=>"Santiago Nonualco",
+                            "La Paz - San Juan Nonualco"=>"San Juan Nonualco",
+                            "La Paz - San Pedro Masahuat"=>"San Pedro Masahuat",
+                            "La Paz - Olocuilta"=>"Olocuilta",
+                            "La Paz - San Pedro Nonualco"=>"San Pedro Nonualco",
+                            "La Paz - San Francisco Chinameca"=>"San Francisco Chinameca",
+                            "La Paz - San Juan Talpa"=>"San Juan Talpa",
+                            "La Paz - El Rosario"=>"El Rosario",
+                            "La Paz - San Rafael Obrajuelo"=>"San Rafael Obrajuelo",
+                            "La Paz - Santa Maria Ostuma"=>"Santa Maria Ostuma",
+                            "La Paz - San Luis Talpa"=>"San Luis Talpa",
+                            "La Paz - San Antonio Masahuat"=>"San Antonio Masahuat",
+                            "La Paz - San Miguel Tepezontes"=>"San Miguel Tepezontes",
+                            "La Paz - San Juan Tepezontes"=>"San Juan Tepezontes",
+                            "La Paz - Tapalhuaca"=>"Tapalhuaca",
+                            "La Paz - Cuyultitan"=>"Cuyultitan",
+                            "La Paz - Paraiso De Osorio"=>"Paraiso De Osorio",
+                            "La Paz - San Emigdio"=>"San Emigdio",
+                            "La Paz - Jerusalen"=>"Jerusalen",
+                            "La Paz - Mercedes La Ceiba"=>"Mercedes La Ceiba",
+                            "La Paz - San Luis La Herradura"=>"San Luis La Herradura",
+                        ),
+                        'La Unión' => array(
+                            "La Union - La Union"=>"La Union",
+                            "La Union - Santa Rosa De Lima"=>"Santa Rosa De Lima",
+                            "La Union - Pasaquina"=>"Pasaquina",
+                            "La Union - San Alejo"=>"San Alejo",
+                            "La Union - Anamoros"=>"Anamoros",
+                            "La Union - El Carmen"=>"El Carmen",
+                            "La Union - Conchagua"=>"Conchagua",
+                            "La Union - El Sauce"=>"El Sauce",
+                            "La Union - Lislique"=>"Lislique",
+                            "La Union - Yucuaiquin"=>"Yucuaiquin",
+                            "La Union - Nueva Esparta"=>"Nueva Esparta",
+                            "La Union - Poloros"=>"Poloros",
+                            "La Union - Bolivar"=>"Bolivar",
+                            "La Union - Concepcion De Oriente"=>"Concepcion De Oriente",
+                            "La Union - Intipuca"=>"Intipuca",
+                            "La Union - San Jose Las Fuentes"=>"San Jose Las Fuentes",
+                            "La Union - Yayantique"=>"Yayantique",
+                            "La Union - Meanguera Del Golfo"=>"Meanguera Del Golfo",
+                        ),
+                        'Morazán' => array(
+                            "Morazán - San Francisco Gotera"=>"San Francisco Gotera",
+                            "Morazán - Jocoro"=>"Jocoro",
+                            "Morazán - Corinto"=>"Corinto",
+                            "Morazán - Sociedad"=>"Sociedad",
+                            "Morazán - Cacaopera"=>"Cacaopera",
+                            "Morazán - Guatajiagua"=>"Guatajiagua",
+                            "Morazán - El Divisadero"=>"El Divisadero",
+                            "Morazán - Jocoaitique"=>"Jocoaitique",
+                            "Morazán - Osicala"=>"Osicala",
+                            "Morazán - Chilanga"=>"Chilanga",
+                            "Morazán - Meanguera"=>"Meanguera",
+                            "Morazán - Torola"=>"Torola",
+                            "Morazán - San Simon"=>"San Simon",
+                            "Morazán - Delicias De Concepcion"=>"Delicias De Concepcion",
+                            "Morazán - Joateca"=>"Joateca",
+                            "Morazán - Arambala"=>"Arambala",
+                            "Morazán - Lolotiquillo"=>"Lolotiquillo",
+                            "Morazán - Yamabal"=>"Yamabal",
+                            "Morazán - Yoloaiquin"=>"Yoloaiquin",
+                            "Morazán - San Carlos"=>"San Carlos",
+                            "Morazán - El Rosario"=>"El Rosario",
+                            "Morazán - Perquin"=>"Perquin",
+                            "Morazán - Sensembra"=>"Sensembra",
+                            "Morazán - Gualococti"=>"Gualococti",
+                            "Morazán - San Fernando"=>"San Fernando",
+                            "Morazán - San Isidro"=>"San Isidro",
+                        ),
+                        'San Miguel' => array(
+                            "San Miguel - San Miguel"=>"San Miguel",
+                            "San Miguel - Chinameca"=>"Chinameca",
+                            "San Miguel - El Transito"=>"El Transito",
+                            "San Miguel - Ciudad Barrios"=>"Ciudad Barrios",
+                            "San Miguel - Chirilagua"=>"Chirilagua",
+                            "San Miguel - Sesori"=>"Sesori",
+                            "San Miguel - San Rafael Oriente"=>"San Rafael Oriente",
+                            "San Miguel - Moncagua"=>"Moncagua",
+                            "San Miguel - Lolotique"=>"Lolotique",
+                            "San Miguel - San Jorge"=>"San Jorge",
+                            "San Miguel - Chapeltique"=>"Chapeltique",
+                            "San Miguel - San Gerardo"=>"San Gerardo",
+                            "San Miguel - Carolina"=>"Carolina",
+                            "San Miguel - Quelepa"=>"Quelepa",
+                            "San Miguel - San Luis De La Reina"=>"San Luis De La Reina",
+                            "San Miguel - Nuevo Eden De San Juan"=>"Nuevo Eden De San Juan",
+                            "San Miguel - Nueva Guadalupe"=>"Nueva Guadalupe",
+                            "San Miguel - Uluazapa"=>"Uluazapa",
+                            "San Miguel - Comacaran"=>"Comacaran",
+                            "San Miguel - San Antonio Del Mosco"=>"San Antonio Del Mosco",
+                        ),
+                        'San Salvador' => array(
+                            "San Salvador - San Salvador"=>"San Salvador",
+                            "San Salvador - Ciudad Delgado"=>"Ciudad Delgado",
+                            "San Salvador - Mejicanos"=>"Mejicanos",
+                            "San Salvador - Soyapango"=>"Soyapango",
+                            "San Salvador - Cuscatancingo"=>"Cuscatancingo",
+                            "San Salvador - San Marcos"=>"San Marcos",
+                            "San Salvador - Ilopango"=>"Ilopango",
+                            "San Salvador - Nejapa"=>"Nejapa",
+                            "San Salvador - Apopa"=>"Apopa",
+                            "San Salvador - San Martin"=>"San Martin",
+                            "San Salvador - Panchimalco"=>"Panchimalco",
+                            "San Salvador - Aguilares"=>"Aguilares",
+                            "San Salvador - Tonacatepeque"=>"Tonacatepeque",
+                            "San Salvador - Santo Tomas"=>"Santo Tomas",
+                            "San Salvador - Santiago Texacuangos"=>"Santiago Texacuangos",
+                            "San Salvador - El Paisnal"=>"El Paisnal",
+                            "San Salvador - Guazapa"=>"Guazapa",
+                            "San Salvador - Ayutuxtepeque"=>"Ayutuxtepeque",
+                            "San Salvador - Rosario De Mora"=>"Rosario De Mora",
+                        ),
+                        'San Vicente' => array(
+                            "San Vicente - San Vicente"=>"San Vicente",
+                            "San Vicente - Tecoluca"=>"Tecoluca",
+                            "San Vicente - San Sebastian"=>"San Sebastian",
+                            "San Vicente - Apastepeque"=>"Apastepeque",
+                            "San Vicente - San Esteban Catarina"=>"San Esteban Catarina",
+                            "San Vicente - San Ildefonso"=>"San Ildefonso",
+                            "San Vicente - Santa Clara"=>"Santa Clara",
+                            "San Vicente - San Lorenzo"=>"San Lorenzo",
+                            "San Vicente - Verapaz"=>"Verapaz",
+                            "San Vicente - Guadalupe"=>"Guadalupe",
+                            "San Vicente - Santo Domingo"=>"Santo Domingo",
+                            "San Vicente - San Cayetano Istepeque"=>"San Cayetano Istepeque",
+                            "San Vicente - Tepetitan"=>"Tepetitan",
+                        ),
+                        'Santa Ana' => array(
+                            "Santa Ana - Santa Ana"=>"Santa Ana",
+                            "Santa Ana - Chalchuapa"=>"Chalchuapa",
+                            "Santa Ana - Metapan"=>"Metapan",
+                            "Santa Ana - Coatepeque"=>"Coatepeque",
+                            "Santa Ana - El Congo"=>"El Congo",
+                            "Santa Ana - Texistepeque"=>"Texistepeque",
+                            "Santa Ana - Candelaria De La Frontera"=>"Candelaria De La Frontera",
+                            "Santa Ana - San Sebastian Salitrillo"=>"San Sebastian Salitrillo",
+                            "Santa Ana - Santa Rosa Guachipilin"=>"Santa Rosa Guachipilin",
+                            "Santa Ana - Santiago De La Frontera"=>"Santiago De La Frontera",
+                            "Santa Ana - El Porvenir"=>"El Porvenir",
+                            "Santa Ana - Masahuat"=>"Masahuat",
+                            "Santa Ana - San Antonio Pajonal"=>"San Antonio Pajonal",
+                        ),
+                        'Sonsonate' => array(
+                            "Sonsonate - Sonsonate"=>"Sonsonate",
+                            "Sonsonate - Izalco"=>"Izalco",
+                            "Sonsonate - Acajutla"=>"Acajutla",
+                            "Sonsonate - Armenia"=>"Armenia",
+                            "Sonsonate - Nahuizalco"=>"Nahuizalco",
+                            "Sonsonate - Juayua"=>"Juayua",
+                            "Sonsonate - San Julian"=>"San Julian",
+                            "Sonsonate - Sonzacate"=>"Sonzacate",
+                            "Sonsonate - San Antonio Del Monte"=>"San Antonio Del Monte",
+                            "Sonsonate - Nahuilingo"=>"Nahuilingo",
+                            "Sonsonate - Cuisnahuat"=>"Cuisnahuat",
+                            "Sonsonate - Santa Catarina Masahuat"=>"Santa Catarina Masahuat",
+                            "Sonsonate - Caluco"=>"Caluco",
+                            "Sonsonate - Santa Isabel Ishuatan"=>"Santa Isabel Ishuatan",
+                            "Sonsonate - Salcoatitan"=>"Salcoatitan",
+                            "Sonsonate - Santo Domingo De Guzman"=>"Santo Domingo De Guzman",
+                        ),
+                        'Usulután' => array(
+                            "Usulután - Usulutan"=>"Usulutan",
+                            "Usulután - Jiquilisco"=>"Jiquilisco",
+                            "Usulután - Berlin"=>"Berlin",
+                            "Usulután - Santiago De Maria"=>"Santiago De Maria",
+                            "Usulután - Jucuapa"=>"Jucuapa",
+                            "Usulután - Santa Elena"=>"Santa Elena",
+                            "Usulután - Jucuaran"=>"Jucuaran",
+                            "Usulután - San Agustin"=>"San Agustin",
+                            "Usulután - Ozatlan"=>"Ozatlan",
+                            "Usulután - Estanzuelas"=>"Estanzuelas",
+                            "Usulután - Mercedes Umaña"=>"Mercedes Umaña",
+                            "Usulután - Alegria"=>"Alegria",
+                            "Usulután - Concepcion Batres"=>"Concepcion Batres",
+                            "Usulután - San Francisco Javier"=>"San Francisco Javier",
+                            "Usulután - Puerto El Triunfo"=>"Puerto El Triunfo",
+                            "Usulután - Tecapan"=>"Tecapan",
+                            "Usulután - San Dionisio"=>"San Dionisio",
+                            "Usulután - Ereguayquin"=>"Ereguayquin",
+                            "Usulután - Santa Maria"=>"Santa Maria",
+                            "Usulután - Nueva Granada"=>"Nueva Granada",
+                            "Usulután - El Triunfo"=>"El Triunfo",
+                            "Usulután - San Buenaventura"=>"San Buenaventura",
+                            "Usulután - California"=>"California",
+                        ),
+                    ),
+                    )
+                )
+            ->add('direccionPrimaria', null, array('label'=>'Dirección'))
+            /*->add('countries', EntityType::class, array(
+                    'class' => \AppBundle\Entity\Country::class,
+                    'choice_label' => 'name',
+                    'choice_value' => 'id')
+                )*/
+            ;
+    }
+
+    public function getParent()
+    {
+        return 'FOS\UserBundle\Form\Type\ProfileFormType';
+
+        // Or for Symfony < 2.8
+        // return 'fos_user_registration';
+    }
+
+    public function getBlockPrefix()
+    {
+        return 'app_user_profile';
+    }
+
+    // For Symfony 2.x
+    public function getName()
+    {
+        return $this->getBlockPrefix();
+    }
+}

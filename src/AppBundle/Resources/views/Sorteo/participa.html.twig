@@ -1,0 +1,242 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block title %}
+Participa | {{ parent() }}
+{% endblock %}
+{% block stylesheets2 %}
+<style type="text/css">
+.peopleCarouselImg img {
+  width: auto;
+  height: 225px;
+  max-height: 225px;
+}
+.peopleCarouselImg2 img {
+  width: auto;
+  height: 100;
+  max-height: 100px;
+}
+</style>
+{% endblock %}
+{% block body %}
+<section class="content-header">
+  <h1>
+    <i class="fa fa-random"></i> Participa en el sorteo
+    <small></small>
+  </h1>
+  {#{% include 'AppBundle:Default:breadcrumb.html.twig' %}#}
+</section>
+
+{# <form action="{{ path('recepcion_pago_update', { 'id': entity.id }) }}"  class="form-horizontal col-md-8" method="post" {{ form_enctype(form) }}> #}
+<section class="content">
+{#{% include "AppBundle:Sorteo:form_participa.html.twig" %}#}
+<div class="row">
+    <div class="col-md-12">
+        <div class="box-body">
+
+            <div class="col-md-5">
+                <div class="box box-solid">
+                    <div class="box-body">
+                        <div class="user-block">
+                            <img class="img-circle img-bordered-sm" src="{{ asset( entity.creador.image.getwebpath ) }}" alt="User Image">
+                                <span class="username">
+                                    <a href="#">{{ entity.creador.fullName }}</a>
+                                    <span style="font-weight:normal">sortea</span>
+                                    {{ entity.titulo }}
+                                </span>
+                                <span class="description">Publicó 3 fotos - hace un momento</span>
+                        </div><!-- /.user-block -->
+                        <br>
+                        <div class="row margin-bottom">
+                            <div class="col-sm-6 peopleCarouselImg">
+                                <img class="img-responsive" src="{{ asset(entity.avatarPrimeraImage) }}" alt="Foto 1">
+                            </div><!-- /.col -->
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-12 peopleCarouselImg2">
+                                        <img class="img-responsive" src="{{ asset(entity.avatarSegundaImage) }}" alt="Foto 2">
+                                        <br>
+                                        <img class="img-responsive" src="{{ asset(entity.avatarTerceraImage) }}" alt="Foto 3">
+                                    </div><!-- /.col -->
+                                </div><!-- /.row -->
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+                        <hr>
+                        <strong><i class="fa fa-book margin-r-5"></i> Título</strong>
+                        <p class="text-muted">
+                            {{ entity.titulo }}
+                        </p>
+                        <hr>
+                        <strong><i class="fa fa-file-text-o margin-r-5"></i> Descripción</strong>
+                        <p class="text-muted">{{ entity.descripcion }}</p>
+                        {% if entity.ganador is not empty %}
+                        <hr>
+                        <strong><i class="fa fa-trophy margin-r-5"></i>aFortunado (Ganador)</strong>
+                        <p class="text-muted">
+                            {{ entity.ganador.username }} con el número {{ entity.numeroGanador }}
+                        </p>
+                        {% endif %}
+
+                        <div class="text-center">
+                        </div>
+                    </div>
+                </div>
+            </div><!-- ./col-md-5 -->
+
+
+            <div class="col-md-7">
+                <div class="box box-solid">
+                    <div class="box-body">
+                        <div class="user-block">
+                            <img class="img-circle img-bordered-sm" src="{{ asset('img/luckycat2.png') }}" alt="User Image">
+                            <span class="username">
+                                <a href="#">Participa
+                                    <!-- <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a> -->
+                                    {# <div class="box-tools pull-right"><button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-minus"></i></button><button type="button" class="btn btn-box-tool" data-widget="remove">
+                                    <i class="fa fa-times"></i></button></div> #}
+                            </span>
+                            <span class="description">Elige tu(s) número(s) para participar</span>
+                        </div><!-- /.user-block -->
+                        <br/>
+                        <form  id="jsForm" role="form" method="post" action="">
+                            <div id="dataContainer"></div>
+                            <input type="hidden" id="id" name="id"/>
+                        </form>
+                    </div>
+
+                    <!-- <div class="box-footer"> -->
+                        {% if entity.ganador is empty %}
+                        <a  href="#" id="js-participar" class="">
+                        </a>
+                        {% endif %}
+                    <!-- </div> -->
+
+                </div>
+            </div>
+
+        </div><!-- ./box-body -->
+    </div><!-- /.box box-primary -->
+</div>
+<!-- Small modal -->
+<div class="modal fade bs-example-modal-sm" id="fortunaModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            {#<form action="{{ path('sorteo_participa_checkbox_click') }}" method="post">#}
+            <!-- <form id="jsFormModal" role="form" method="post" action=""> -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel2">Confirmación</h4>
+            </div>
+            <div class="modal-body">
+                <h4></h4>
+
+                    <!-- <input type="hidden" id="id" name="id"/> -->
+                    <p>¿Estás seguro que deseas participar con el número seleccionado?</p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <input type="submit" id="button-submit" class="btn btn-primary" value="Si, estoy seguro"/>
+            </div>
+            <!-- </form> -->
+        </div>
+    </div>
+</div>
+<!-- /modals -->
+</section>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script>
+(function($) {
+    //alert("a");
+    $(document).on('click', 'input[type=checkbox]', function (e){
+		e.preventDefault();
+		$('#id').val($(this).attr('value'));
+        //alert($('#id').val());
+	});
+
+    $(document).on('click', '#button-submit', function(e){
+        //alert("HOLA");
+        $('#fortunaModal').modal('hide');
+        var url = '{{ path('sorteo_participa_checkbox_click') }}';
+        jsFormUrl = url;
+        ajaxPost();
+
+        //alert($('#id').val());
+        //alert(jsFormUrl);
+    });
+    //alert("b");
+
+    /* tooltip */
+    $('[data-toggle-tool="tooltip"]').tooltip();
+
+    /* helper functions */
+    function getCheckedRows () {
+      var users = [];
+        dataContainer.find('input:checkbox:checked').each(function() {
+          users.push($(this).val());
+        });
+        return users.join(',');
+    }
+    function isSelected () {
+        if (!getCheckedRows()) {
+          alert('Se debe seleccionar al menos un número para participar');
+          return false;
+        };
+        return true;
+      }
+    function init(){
+      checkboxBtn.prop("checked",false);
+      {# alert({{id}}); #}
+      jsFormUrl = '{{ path('sorteo_participa_ajax', { 'id': id }) }}';
+    }
+
+    function ajaxPost(action, callback) {
+      form.addClass('working');
+      $.ajax({
+        type: "POST",
+        data: form.serialize(),
+        url: jsFormUrl,
+        success: function(data){
+          form.removeClass('working');
+          if(callback) callback(data);
+          init();
+          //alert(action);
+          if(!action){
+              dataContainer.empty().hide().html(data).fadeIn();
+              //alert(1);
+          }else{
+              ajaxPost();
+              //alert(2);
+          }
+
+        },
+        error:function(){
+            form.removeClass('working');
+        }
+      });
+      return false;
+    }
+
+    /* ajax dashboard*/
+    var form = $('#jsForm'),
+    // formModal = $('#jsFormModal'),
+    dataContainer = form.find('#dataContainer'),
+    jsFormUrl = '',
+    checkboxBtn = form.find("input:checkbox");
+
+    form.on('submit', ajaxPost);
+    //formModal.on('submit', ajaxPost);
+
+    /* submit the form after loading the page*/
+    init();
+    ajaxPost();
+
+    $('input[type="checkbox"].minimal').iCheck({
+      checkboxClass: 'icheckbox_minimal-blue',
+      radioClass   : 'iradio_minimal-blue'
+    });
+})(jQuery);
+</script>
+{% endblock %}

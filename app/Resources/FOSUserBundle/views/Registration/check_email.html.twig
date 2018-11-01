@@ -1,0 +1,34 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+<div class="login-logo">
+    <a href="{{ app_config.app_website }}"><b>{{ app_config.app_name }}</b></a>
+</div>
+<div class="login-box-body">
+    <p class="login-box-msg"><strong>Verificación de cuenta</strong></p>
+        <p style="text-align: justify; text-justify: inter-word;">
+            {{ 'registration.check_email'|trans({'%email%': user.email})|raw }}
+        </p>
+        <p>
+            {% include ":flash_messages:flash-messages.html.twig" %}
+        </p>
+            <div class="row">
+                <div align="center">
+                    ¿Ya confirmaste tu cuenta?<br/>
+                    <a href="{{ path("sorteo") }}"> Continua con la navegación en el sitio </a>
+                </div>
+            </div>
+    </p>
+</div>
+{% endblock fos_user_content %}
+{% block javascripts %}
+<!-- jQuery -->
+<script src="{{ asset('gentelella/jquery/dist/jquery.min.js') }}"></script>
+<!-- Bootstrap -->
+<script src="{{ asset('gentelella/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="{{ asset('gentelella/build/js/custom.min.js') }}"></script>
+{% endblock %}

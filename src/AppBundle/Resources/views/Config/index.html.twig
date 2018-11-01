@@ -1,0 +1,150 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block title %}
+Configuración | {{ parent() }}
+{% endblock %}
+{% block body %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    <i class="fa fa-wrench"></i> Preferencias
+    <small>Formulario</small>
+  </h1>
+  {#{% include 'AppBundle:Default:breadcrumb.html.twig' %}#}
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    {# <h3 class="box-title"></h3> #}
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <form class="form-horizontal" action="{{ path('config_update')}}" method="POST" enctype="multipart/form-data">
+                        <div class="tabbable">
+                            <ul class="nav nav-tabs">
+                              <li class="active"><a href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-cog"></span> General</a></li>
+                              <li><a href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-wrench"></span> Parámetros</a></li>
+                            </ul> <!-- /tabs -->
+
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab1">
+                                <div class="form-group">
+                                    <label for="" class="col-md-4 control-label">Logo</label>
+                                    <div class="col-md-4">
+                                        <img class="myavatar col-md-4" src="{{ asset( app_config.app_logo )}}">
+                                    </div>
+                                </div>
+                                {{ form_row(imgform.file, { 'label': ' '}) }}
+                                <div class="form-group">
+                                    <label for="" class="col-md-4 control-label">Nombre de la aplicación</label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="config[app_name]" value="{{app_config.app_name}}" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-md-4 control-label">Descripción</label>
+                                    <div class="col-md-4">
+                                        <textarea rows="3" name="config[app_description]" placeholder="Añada una descripción..." class="form-control">{{app_config.app_description}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-md-4 control-label">Dirección</label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="config[app_address]" value="{{app_config.app_address}}" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-md-4 control-label">Ciudad</label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="config[app_city]" value="{{app_config.app_city}}" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-md-4 control-label">Teléfono </label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="config[app_tel]" value="{{app_config.app_tel}}" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-md-4 control-label">Email </label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="config[app_email]" value="{{app_config.app_email}}" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-md-4 control-label">Idioma </label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="config[app_lang]" value="{{app_config.app_lang}}" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-md-4 control-label">Nombre de la empresa </label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="config[app_enterprise_name]" value="{{app_config.app_enterprise_name}}" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-md-4 control-label">Diseñado por </label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="config[app_designed_by]" value="{{app_config.app_designed_by}}" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-md-4 control-label">Código postal</label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="config[app_cp]" value="{{app_config.app_cp}}" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-md-4 control-label">GSM </label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="config[app_gsm]" value="{{app_config.app_gsm}}" class="form-control">
+                                    </div>
+                                </div>
+                          </div><!-- /tab1 -->
+                            <div class="tab-pane" id="tab2">
+                            <div class="form-group">
+                              <label for="" class="col-md-4 control-label">Líneas / Páginas </label>
+
+                              <div class="col-md-4">
+                                  <select name="config[rows_per_page]" class="form-control">
+                                      <option {% if app_config.rows_per_page =="10" %}selected="selected"{% endif %} value="10">10</option>
+                                      <option {% if app_config.rows_per_page =="50" %}selected="selected"{% endif %} value="50">50</option>
+                                      <option {% if app_config.rows_per_page =="100" %}selected="selected"{% endif %} value="100">100</option>
+                                      <option {% if app_config.rows_per_page =="200" %}selected="selected"{% endif %} value="200">200</option>
+                                  </select>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="" class="col-md-4 control-label">Style CSS </label>
+                              <div class="col-md-4">
+                                <textarea rows="3" name="config[app_css]" placeholder="ajouter une description..." class="form-control">{{app_config.app_css}}</textarea>
+                              </div>
+                            </div>
+                            </div><!-- /tab2 -->
+                        </div> <!-- /tab-content -->
+                       </div>
+                       <!-- <div class="form-group"> -->
+                       <div class="box-footer" align="center">
+                           <button type="submit" name="subvalider" class="btn btn-primary btn-embossed">Guardar</button>
+                       </div>
+                       <!-- </div> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock body %}
+{% block javascripts %}
+{{ parent() }}
+<script>
+    (function($) {
+
+        $('.form-group').find('.col-md-6').removeClass('col-md-6').addClass('col-md-4');
+        //$('select').removeClass('form-control').select2({minimumResultsForSearch: -1});
+    })(jQuery);
+</script>
+{% endblock %}

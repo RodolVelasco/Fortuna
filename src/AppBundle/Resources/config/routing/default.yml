@@ -1,0 +1,15 @@
+home:
+    pattern:  /
+    defaults: { _controller: AppBundle:Default:index }
+
+app_dashboard:
+    pattern:  /
+    defaults: { _controller: AppBundle:Default:index }
+
+app_stats:
+    pattern:  /stats
+    defaults: { _controller: AppBundle:Default:stats }
+    
+app_estadisticas:
+    pattern:  /estadisticas
+    defaults: { _controller: AppBundle:Default:estadisticas }

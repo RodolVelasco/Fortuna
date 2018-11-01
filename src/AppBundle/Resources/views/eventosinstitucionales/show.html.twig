@@ -1,0 +1,229 @@
+{# {% extends 'PetkoparaCrudGeneratorBundle::base.html.twig' %} #}
+{% extends "@FOSUser/layout_once_logged_in.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}
+{{ parent() }} - Mostrar evento institucional
+{% endblock %}
+
+{% block body %}
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Eventos Institucionales</h3>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Visualización</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    <div class="row">
+                        <fieldset>
+                            <legend>Información general del programa</legend>
+                            <table class="table table-striped projects table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong>Id</strong>
+                                        </td>
+                                        <td>
+                                            {{ eventosInstitucionale.id }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Nombre de la institución</strong>
+                                        </td>
+                                        <td>
+                                            {{ eventosInstitucionale.nombreInstitucion }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Dirección del responsable</strong>
+                                        </td>
+                                        <td>
+                                            {{ eventosInstitucionale.direccionResponsablePrograma }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Nombre del programa</strong>
+                                        </td>
+                                        <td>
+                                            {{ eventosInstitucionale.nombrePrograma }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Nombre del contacto responsable</strong>
+                                        </td>
+                                        <td>
+                                            {{ eventosInstitucionale.nombreContactoResponsablePrograma }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Teléfono del contacto responsable</strong>
+                                        </td>
+                                        <td>
+                                            {{ eventosInstitucionale.telefonoContactoResponsablePrograma }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Email del contacto responsable</strong>
+                                        </td>
+                                        <td>
+                                            {{ eventosInstitucionale.emailContactoResponsablePrograma }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Detalles del programa</legend>
+                            <table class="table table-striped projects table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong>Actividad</strong>
+                                        </td>
+                                        <td>
+                                            {{ eventosInstitucionale.actividad }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Departamento</strong>
+                                        </td>
+                                        <td>
+                                            {{ eventosInstitucionale.departamento }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Lugar</strong>
+                                        </td>
+                                        <td>
+                                            {{ eventosInstitucionale.lugar }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Fecha</strong>
+                                        </td>
+                                        <td>
+                                            {% if eventosInstitucionale.fecha %}{{ eventosInstitucionale.fecha|date('Y-m-d') }}{% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Hora</strong>
+                                        </td>
+                                        <td>
+                                            {{ eventosInstitucionale.hora }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Minuto</strong>
+                                        </td>
+                                        <td>
+                                            {{ eventosInstitucionale.minuto }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Población objetivo</strong>
+                                        </td>
+                                        <td>
+                                            {{ eventosInstitucionale.poblacionObjetivo }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Número de participantes</strong>
+                                        </td>
+                                        <td>
+                                            {{ eventosInstitucionale.numeroParticipantes }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Información del encargado de la actividad</legend>
+                            <table class="table table-striped projects table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong>Nombre</strong>
+                                        </td>
+                                        <td>
+                                            {{ eventosInstitucionale.nombreContactoResponsableActividad }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Teléfono</strong>
+                                        </td>
+                                        <td>
+                                            {{ eventosInstitucionale.telefonoContactoResponsableActividad }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Email</strong>
+                                        </td>
+                                        <td>
+                                            {{ eventosInstitucionale.emailContactoResponsableActividad }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </fieldset>
+                        <div class="ln_solid"></div>
+
+                        <form action="{{ path('eventosinstitucionales_delete', { 'id': eventosInstitucionale.id }) }}" method="post">
+                            {% form_theme delete_form 'AppBundle:Form:fields_centered_form_without_hidden_format.html.twig' %}
+                            <div class="form-group col-md-offset-4">
+                                <a class="btn btn-default" href="{{ path('eventosinstitucionales') }}">
+                                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                                    Regresar
+                                </a>
+                                <a class="btn btn-primary" href="{{ path('eventosinstitucionales_edit', { 'id':  eventosInstitucionale.id }) }}">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    Editar
+                                </a>
+                                <a class="btn btn-info" href="{{ path('eventosinstitucionales_new') }}">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    Agregar
+                                </a>
+                                <!-- <form action="{{ path('eventosinstitucionales_delete', { 'id': eventosInstitucionale.id }) }}" method="post" style="display: inline-block"> -->
+                                <input type="hidden" name="_method" value="DELETE" />
+                                {{ form_widget(delete_form) }}
+                                <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure');">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    Eliminar
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

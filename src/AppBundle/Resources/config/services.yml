@@ -1,0 +1,23 @@
+services:
+#    activity_listener:
+#        class: AppBundle\Listener\ActivityListener
+#        arguments: ["@security.context", "@doctrine.orm.entity_manager"]
+#        tags:
+#            - { name: kernel.event_listener, event: kernel.controller, method: onCoreController }
+
+#    app.stats_handler:
+#        class: AppBundle\Stats\StatsHandler
+#        arguments: ["@doctrine.orm.entity_manager"]
+    twig.extension.text:
+            class: Twig_Extensions_Extension_Text
+            tags:
+            - { name: twig.extension }
+    app.twig.extension.config:
+        class: AppBundle\Twig\ConfigExtension
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+        - { name: twig.extension }
+    app.twig.extension.delete_link:
+        class: AppBundle\Twig\LinkHelperExtension
+        tags:
+        - { name: twig.extension }

@@ -1,0 +1,40 @@
+evento_index:
+    path:     /index
+    defaults: { _controller: "AppBundle:Evento:index" }
+
+evento_ajax:
+    path:     /ajaxlist
+    defaults: { _controller: "AppBundle:Evento:ajaxList" }
+    requirements: { _method: post }
+
+evento_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Evento:show" }
+
+evento_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Evento:new" }
+
+evento_create:
+    path:     /create
+    defaults: { _controller: "AppBundle:Evento:create" }
+    requirements: { _method: post }
+
+evento_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Evento:edit" }
+
+evento_update:
+    path:     /{id}/update
+    defaults: { _controller: "AppBundle:Evento:update" }
+    requirements: { _method: post|put }
+
+evento_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Evento:delete" }
+    requirements: { _method: post|delete }
+
+evento_remove:
+    path:     /remove
+    defaults: { _controller: "AppBundle:Evento:remove" }
+    requirements: { _method: post|delete }

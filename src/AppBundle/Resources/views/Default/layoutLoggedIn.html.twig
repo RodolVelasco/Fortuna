@@ -1,0 +1,560 @@
+<body class="hold-transition skin-blue {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CHIEF') %}sidebar-mini{% else %}layout-top-nav{% endif %}">
+    <div class="wrapper">
+        <header class="main-header">
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CHIEF') %}
+      <!-- Main Header -->
+
+        <!-- Logo -->
+        <a href="#" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini">4Tuna</span>
+          <span class="logo-lg"><strong>{{ app_config.app_name }}</strong></span>
+        </a>
+
+        <!-- Header Navbar -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <!--<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+
+
+    {% else %}
+
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="#" class="navbar-brand"><b>{{ app_config.app_name }}</b></a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+
+          <ul class="nav navbar-nav">
+            {% include "AppBundle:Default:menu.html.twig" %}
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+{#
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <!-- Messages: style can be found in dropdown.less-->
+            <li class="dropdown messages-menu">
+              <!-- Menu toggle button -->
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-envelope-o"></i>
+                <span class="label label-success">4</span>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="header">You have 4 messages</li>
+                <li>
+                  <!-- inner menu: contains the messages -->
+                  <ul class="menu">
+                    <li><!-- start message -->
+                      <a href="#">
+                        <div class="pull-left">
+                          <!-- User Image -->
+                          <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        </div>
+                        <!-- Message title and timestamp -->
+                        <h4>
+                          Support Team
+                          <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                        </h4>
+                        <!-- The message -->
+                        <p>Why not buy a new awesome theme?</p>
+                      </a>
+                    </li>
+                    <!-- end message -->
+                  </ul>
+                  <!-- /.menu -->
+                </li>
+                <li class="footer"><a href="#">See All Messages</a></li>
+              </ul>
+            </li>
+            <!-- /.messages-menu -->
+
+            <!-- Notifications Menu -->
+            <li class="dropdown notifications-menu">
+              <!-- Menu toggle button -->
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-bell-o"></i>
+                <span class="label label-warning">10</span>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="header">You have 10 notifications</li>
+                <li>
+                  <!-- Inner Menu: contains the notifications -->
+                  <ul class="menu">
+                    <li><!-- start notification -->
+                      <a href="#">
+                        <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                      </a>
+                    </li>
+                    <!-- end notification -->
+                  </ul>
+                </li>
+                <li class="footer"><a href="#">View all</a></li>
+              </ul>
+            </li>
+            <!-- Tasks Menu -->
+            <li class="dropdown tasks-menu">
+              <!-- Menu Toggle Button -->
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-flag-o"></i>
+                <span class="label label-danger">9</span>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="header">You have 9 tasks</li>
+                <li>
+                  <!-- Inner menu: contains the tasks -->
+                  <ul class="menu">
+                    <li><!-- Task item -->
+                      <a href="#">
+                        <!-- Task title and progress text -->
+                        <h3>
+                          Design some buttons
+                          <small class="pull-right">20%</small>
+                        </h3>
+                        <!-- The progress bar -->
+                        <div class="progress xs">
+                          <!-- Change the css width attribute to simulate progress -->
+                          <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                            <span class="sr-only">20% Complete</span>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <!-- end task item -->
+                  </ul>
+                </li>
+                <li class="footer">
+                  <a href="#">View all tasks</a>
+                </li>
+              </ul>
+            </li>
+            <!-- User Account Menu -->
+            <li class="dropdown user user-menu">
+              <!-- Menu Toggle Button -->
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <!-- The user image in the navbar-->
+                <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                <span class="hidden-xs">Alexander Pierce</span>
+              </a>
+              <ul class="dropdown-menu">
+                <!-- The user image in the menu -->
+                <li class="user-header">
+                  <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+
+                  <p>
+                    Alexander Pierce - Web Developer
+                    <small>Member since Nov. 2012</small>
+                  </p>
+                </li>
+                <!-- Menu Body -->
+                <li class="user-body">
+                  <div class="row">
+                    <div class="col-xs-4 text-center">
+                      <a href="#">Followers</a>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                      <a href="#">Sales</a>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                      <a href="#">Friends</a>
+                    </div>
+                  </div>
+                  <!-- /.row -->
+                </li>
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                  <div class="pull-left">
+                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  </div>
+                  <div class="pull-right">
+                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-custom-menu -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+#}
+
+    {% endif %}
+    <!-- Navbar Right Menu -->
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <!-- Messages: style can be found in dropdown.less-->
+        {#
+        <li class="dropdown messages-menu">
+          <!-- Menu toggle button -->
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-envelope-o"></i>
+            <span class="label label-success">4</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="header">Tienes 4 mensajes</li>
+            <li>
+              <!-- inner menu: contains the messages -->
+              <ul class="menu">
+                <li><!-- start message -->
+                  <a href="#">
+                    <div class="pull-left">
+                      <!-- User Image -->
+                      <img src="{{ asset('AdminLTE/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+                    </div>
+                    <!-- Message title and timestamp -->
+                    <h4>
+                      4Tuna Team
+                      <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                    </h4>
+                    <!-- The message -->
+                    <p>Tips para tener suerte en Fourtuna</p>
+                  </a>
+                </li>
+                <!-- end message -->
+              </ul>
+              <!-- /.menu -->
+            </li>
+            <li class="footer"><a href="#">Ver todos los mensajes</a></li>
+          </ul>
+        </li>
+        #}
+        <!-- /.messages-menu -->
+
+        <!-- Notifications Menu -->
+        {#
+        <li class="dropdown notifications-menu">
+          <!-- Menu toggle button -->
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-bell-o"></i>
+            <span class="label label-warning">10</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="header">Tienes 10 notificaciones</li>
+            <li>
+              <!-- Inner Menu: contains the notifications -->
+              <ul class="menu">
+                <li><!-- start notification -->
+                  <a href="#">
+                    <i class="fa fa-users text-aqua"></i> 5 afortunados han visto tu perfil
+                  </a>
+                </li>
+                <!-- end notification -->
+              </ul>
+            </li>
+            <li class="footer"><a href="#">Ver todo</a></li>
+          </ul>
+        </li>
+        #}
+
+        <!-- Tasks Menu -->
+        {#}
+        <li class="dropdown tasks-menu">
+          <!-- Menu Toggle Button -->
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-flag-o"></i>
+            <span class="label label-danger">2</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="header">2 rifas han finalizado</li>
+            <li>
+              <!-- Inner menu: contains the tasks -->
+              <ul class="menu">
+                <li><!-- Task item -->
+                  <a href="#">
+                    <!-- Task title and progress text -->
+                    <h3>
+                      Mira los resultados de la rifa por un iPhone 6
+                      <small class="pull-right">100%</small>
+                    </h3>
+                    <!-- The progress bar -->
+                    <div class="progress xs">
+                      <!-- Change the css width attribute to simulate progress -->
+                      <div class="progress-bar progress-bar-aqua" style="width: 100%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                        <span class="sr-only">100% Completada</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <!-- end task item -->
+              </ul>
+            </li>
+            <li class="footer">
+              <a href="#">Ver todas las rifas</a>
+            </li>
+          </ul>
+        </li>
+        #}
+
+        <!-- User Account Menu -->
+        <li class="dropdown user user-menu">
+          <!-- Menu Toggle Button -->
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <!-- The user image in the navbar-->
+            <img src="{{ asset( app.user.image.getwebpath ) }}" class="user-image" alt="{{ app.user.username }}">
+            <!-- hidden-xs hides the username on small devices so only the image appears. -->
+            <span class="hidden-xs">{{ app.user.fullName }}</span>
+          </a>
+          <ul class="dropdown-menu">
+            <!-- The user image in the menu -->
+            <li class="user-header">
+              <img src="{{ asset( app.user.image.getwebpath ) }}" class="img-circle" alt="{{ app.user.username }}">
+
+              <p>
+                {{ app.user.fullName }}
+                <small>Miembro desde {{ app.user.fechaCreacion|date('d/M/Y') }}</small>
+              </p>
+            </li>
+            <!-- Menu Body -->
+            <li class="user-body">
+              <div class="row">
+                <div class="col-xs-4 text-center">
+                  <a href="#">Seguidores</a>
+                </div>
+                <div class="col-xs-4 text-center">
+                  <a href="#">Rifas</a>
+                </div>
+                <div class="col-xs-4 text-center">
+                  <a href="#">Amigos</a>
+                </div>
+              </div>
+              <!-- /.row -->
+            </li>
+            <!-- Menu Footer-->
+            <li class="user-footer">
+              {# <div class="btn-toolbar"> #}
+              <div class="col-xs-12 text-center">
+                <div class="btn-group">
+                  <a href="{{ path('fos_user_profile_show') }}" class="btn btn-default btn-flat">Perfil</a>
+
+                  <a href="{{ path('fos_user_change_password') }}" class="btn btn-default btn-flat">Contraseña</a>
+
+                  <a href="{{ path('fos_user_security_logout') }}" class="btn btn-default btn-flat">Logout</a>
+                  </div>
+              </div>
+              {# </div> #}
+            </li>
+          </ul>
+        </li>
+        <!-- Control Sidebar Toggle Button -->
+        <li>
+          <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+        </li>
+      </ul>
+    </div>
+    {% if not is_granted('ROLE_ADMIN') or not is_granted('ROLE_CHIEF') %}</div>{% endif %}
+    </nav>
+    </header>
+
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CHIEF') %}
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+
+      <!-- sidebar: style can be found in sidebar.less -->
+      <section class="sidebar">
+
+        <!-- Sidebar user panel (optional) -->
+        {# <div class="user-panel">
+          <div class="pull-left image">
+            <img src="{{ asset('AdminLTE/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+          </div>
+          <div class="pull-left info">
+            <p>Alexander Pierce</p>
+            <!-- Status -->
+            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          </div>
+        </div>
+
+        <!-- search form (Optional) -->
+        <form action="#" method="get" class="sidebar-form">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                  <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                  </button>
+                </span>
+          </div>
+        </form> #}
+        <!-- /.search form -->
+
+        <!-- Sidebar Menu -->
+       <ul class="sidebar-menu">
+          {% include "AppBundle:Default:menu.html.twig" %}
+          {% include "AppBundle:Default:menuAdmin.html.twig" %}
+        </ul>
+        <!-- /.sidebar-menu -->
+      </section>
+      <!-- /.sidebar -->
+    </aside>
+    {% endif %}
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            {% if not is_granted('ROLE_ADMIN') or not is_granted('ROLE_CHIEF') %}<div class="container">{% endif %}
+                {% include "AppBundle:Default:flashes.html.twig" %}
+                {% block body %}{% endblock %}
+            {% if not is_granted('ROLE_ADMIN') or not is_granted('ROLE_CHIEF') %}</div>{% endif %}
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            {% if not is_granted('ROLE_ADMIN') or not is_granted('ROLE_CHIEF') %}<div class="container">{% endif %}
+                <!-- To the right -->
+                <div class="pull-right hidden-xs">
+                <!-- Anything you want -->
+                </div>
+                <!-- Default to the left -->
+                <strong>Copyright &copy; {{ date()|date('Y') }} <a href="#">{{ app_config.app_enterprise_name }}</a></strong> Todos los derechos reservados.
+            {% if not is_granted('ROLE_ADMIN') or not is_granted('ROLE_CHIEF') %}</div>{% endif %}
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+          <!-- Create the tabs -->
+          <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+            <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <!-- Home tab content -->
+            <div class="tab-pane active" id="control-sidebar-home-tab">
+              <h3 class="control-sidebar-heading">Recent Activity</h3>
+              <ul class="control-sidebar-menu">
+                <li>
+                  <a href="javascript::;">
+                    <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+
+                    <div class="menu-info">
+                      <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+                      <p>Will be 23 on April 24th</p>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+              <!-- /.control-sidebar-menu -->
+
+              <h3 class="control-sidebar-heading">Tasks Progress</h3>
+              <ul class="control-sidebar-menu">
+                <li>
+                  <a href="javascript::;">
+                    <h4 class="control-sidebar-subheading">
+                      Custom Template Design
+                      <span class="label label-danger pull-right">70%</span>
+                    </h4>
+
+                    <div class="progress progress-xxs">
+                      <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+              <!-- /.control-sidebar-menu -->
+
+            </div>
+            <!-- /.tab-pane -->
+            <!-- Stats tab content -->
+            <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+            <!-- /.tab-pane -->
+            <!-- Settings tab content -->
+            <div class="tab-pane" id="control-sidebar-settings-tab">
+              <form method="post">
+                <h3 class="control-sidebar-heading">General Settings</h3>
+
+                <div class="form-group">
+                  <label class="control-sidebar-subheading">
+                    Report panel usage
+                    <input type="checkbox" class="pull-right" checked>
+                  </label>
+
+                  <p>
+                    Some information about this general settings option
+                  </p>
+                </div>
+                <!-- /.form-group -->
+              </form>
+            </div>
+            <!-- /.tab-pane -->
+          </div>
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Add the sidebar's background. This div must be placed
+             immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+    </div>
+        <!-- ./wrapper -->
+    {% block javascripts %}
+    <!-- REQUIRED JS SCRIPTS -->
+    <!-- jQuery 3.1.1 -->
+    <script src="{{ asset('AdminLTE/plugins/jQuery/jQuery-3.1.1.min.js') }}"></script>
+    {# <script src="{{ asset('js/more/jquery.min.js') }}"></script> #}
+    <!-- Bootstrap 3.3.6 -->
+    <script src="{{ asset('AdminLTE/bootstrap/js/bootstrap.min.js') }}"></script>
+
+    <script src="{{ asset('jquery-mask-plugin/dist/jquery.mask.min.js') }}"></script>
+
+    <!-- Select2 -->
+    <script src="{{ asset('AdminLTE/plugins/select2/select2.full.min.js') }}"></script>
+    <!-- InputMask -->
+    <script src="{{ asset('AdminLTE/plugins/input-mask/jquery.inputmask.js') }}"></script>
+    <script src="{{ asset('AdminLTE/plugins/input-mask/jquery.inputmask.date.extensions.js') }}"></script>
+    <script src="{{ asset('AdminLTE/plugins/input-mask/jquery.inputmask.extensions.js') }}"></script>
+    <!-- date-range-picker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+    <script src="{{ asset('AdminLTE/plugins/daterangepicker/daterangepicker.js') }}"></script>
+    <!-- bootstrap datepicker -->
+    <script src="{{ asset('AdminLTE/plugins/datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('AdminLTE/plugins/datepicker/locales/bootstrap-datepicker.es.js') }}"></script>
+    <script src="{{ asset('bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js') }}"></script>
+    <!-- bootstrap color picker -->
+    <script src="{{ asset('AdminLTE/plugins/colorpicker/bootstrap-colorpicker.min.js') }}"></script>
+    <!-- bootstrap time picker -->
+    <script src="{{ asset('AdminLTE/plugins/timepicker/bootstrap-timepicker.min.js') }}"></script>
+    <!-- SlimScroll 1.3.0 -->
+    <script src="{{ asset('AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
+    <!-- iCheck 1.0.1 -->
+    <script src="{{ asset('AdminLTE/plugins/iCheck/icheck.min.js') }}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset('AdminLTE/plugins/fastclick/fastclick.js') }}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('AdminLTE/dist/js/app.min.js') }}"></script>
+    <script src="{{ asset('js/more/jquery.cookie.js') }}"></script>
+    {# <script src="{{ asset('js/more/select2.min.js') }}"></script> por revisar FORTUNA #}
+    <script src="{{ asset('js/more/application.js') }}"></script>
+    {# script src="{{ asset('AdminLTE/dist/js/demo.js') }}"></script>#}
+    <!-- Optionally, you can add Slimscroll and FastClick plugins.
+         Both of these plugins are recommended to enhance the
+         user experience. Slimscroll is required when using the
+         fixed layout. -->
+    <script>
+    $(function () {
+     //alert("hola");
+     /*$('input').iCheck({
+           checkboxClass: 'icheckbox_square-blue',
+           radioClass: 'iradio_square-blue',
+           increaseArea: '20%' // optional
+       });*/
+       $(".select2").select2();
+
+     //alert("Hi");
+     //$("[data-mask]").inputmask();
+    });
+    </script>
+    {% endblock %}
+</body>
+</html>

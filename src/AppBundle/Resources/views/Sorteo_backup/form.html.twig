@@ -1,0 +1,34 @@
+{# <div class="form-group">
+  <label for="" class="col-sm-4 control-label">Foto 1</label>
+  <div class="col-sm-6">
+    <img class="profile-user-img img-responsive img-circle" src="{{ asset( entity.avatarPrimeraImage)}}" alt="Foto 1"></img>
+  </div>
+</div>#}
+{{ form_row(form.primeraImage.file, { 'label': 'Imagen 1', 'attr': {'class': ''}}) }}
+
+{#<div class="form-group">
+  <label for="" class="col-sm-4 control-label">Foto 2</label>
+  <div class="col-sm-6">
+    <img class="profile-user-img img-responsive img-circle" src="{{ asset( entity.avatarSegundaImage)}}" alt="Foto 2"></img>
+  </div>
+</div>#}
+{{ form_row(form.segundaImage.file, { 'label': 'Imagen 2', 'attr': {'class': ''}}) }}
+
+{#<div class="form-group">
+  <label for="" class="col-sm-4 control-label">Foto 3</label>
+  <div class="col-sm-6">
+    <img class="profile-user-img img-responsive img-circle" src="{{ asset( entity.avatarTerceraImage)}}" alt="Foto 3"></img>
+  </div>
+</div>#}
+{{ form_row(form.terceraImage.file, { 'label': 'Imagen 3', 'attr': {'class': ''}}) }}
+
+{{ form_row(form.titulo) }}
+{{ form_row(form.descripcion) }}
+{{ form_row(form.precio) }}
+{{ form_row(form.ganancia) }}
+{{ form_row(form.costoPorNumero) }}
+{{ form_row(form.cantidadNumeroPermitido) }}
+{{ form_row(form.tipoSorteo) }}
+{{ form_row(form.tipoPagoPorMonedero) }}
+{{ form_row(form.estado) }}
+{{ form_rest(form) }}

@@ -1,0 +1,9 @@
+{% block subject 'Enhorabuena ' ~ username %}
+
+{% block body_html %}
+    <strong>. Has ganado</strong>. Ve al siguiente 
+{% endblock %}
+
+{% block body_text %}
+    <a href="{{ link }}">link</a> para revisar tu premio. Utiliza el siguiente código <strong>{{ sorteoId }}</strong> para reclamarlo y no olvides llevar un documento de identidad.<br/> No pierdas una oportunidad más, vuelve a participar presionando <a href="{{ linkToSorteo }}">aquí</a>.
+{% endblock %}

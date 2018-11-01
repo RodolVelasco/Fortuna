@@ -1,0 +1,59 @@
+# app/config/security.yml
+jms_security_extra:
+    secure_all_services: false
+    expressions: true
+
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_MANAGER: [ROLE_USER, ROLE_SELLER]
+        ROLE_CHIEF: ROLE_MANAGER
+        ROLE_ADMIN: ROLE_CHIEF
+
+        #ADMIN: superpoderoso
+        #CHIEF: colaborador del admin... empleado Fortuna
+        #MANAGER: TIENDAS (siman, rgnieto, )
+        #SELLER: vendedores
+        #USER: personas naturales
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+            #debug toolbar for fosuserbundle related pages for loing, register and forgotpassword
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                remember_me: true
+                csrf_token_generator: security.csrf.token_manager
+                # if you are using Symfony < 2.8, use the following config instead:
+                # csrf_provider: form.csrf_provider
+                success_handler: authentication.handler.login_success_handler
+                # Esto llama a AppBundle/Security/LoginSuccessHandler.php esta que tiene la
+                # lógica para redireccionar basado en el rol
+            remember_me:
+                key:         %secret%
+                lifetime: 1800
+                path:     /
+                domain:   ~
+                user_provider: fos_userbundle
+
+            logout:       true
+            anonymous:    true
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/sorteo, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/sorteo/ajaxlist, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/*, role: ROLE_ADMIN }
+        - { path: ^/*, role: ROLE_USER }
+#        - { path: ^/*, role: [ ROLE_ADMIN, ROLE_USER ] }

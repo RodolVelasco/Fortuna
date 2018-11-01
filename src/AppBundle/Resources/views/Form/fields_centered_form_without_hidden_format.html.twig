@@ -1,0 +1,24 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block form_widget_simple %}
+{% spaceless %}
+	{% set type = type|default('text') %}
+	<input {% if type != 'file' %}class=""{% else %}class=""{% endif %} id="{{ id }}" type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+{% endspaceless %}
+{% endblock form_widget_simple %}
+
+{% block form_row %}
+{% spaceless %}
+    {{ form_widget(form) }}
+{% endspaceless %}
+{% endblock form_row %}
+
+{%- block form_widget_compound -%}
+    {# <div {{ block('widget_container_attributes') }}> #}
+        {%- if form.parent is empty -%}
+            {{ form_errors(form) }}
+        {%- endif -%}
+        {{- block('form_rows') -}}
+        {{- form_rest(form) -}}
+    {# </div> #}
+{%- endblock form_widget_compound -%}

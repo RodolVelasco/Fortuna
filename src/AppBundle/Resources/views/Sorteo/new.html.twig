@@ -1,0 +1,51 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block title %}
+Sorteo | {{ parent() }}
+{% endblock %}
+{% block body %}
+<section class="content-header">
+  <h1>
+    <i class="fa fa-random"></i> Sorteo
+    <small>Formulario de creación sorteo</small>
+  </h1>
+  {#{% include 'AppBundle:Default:breadcrumb.html.twig' %}#}
+</section>
+{# <form class="form-horizontal col-md-8" action="{{ path('sorteo_create')}}" method="POST" role="form"  {{ form_enctype(form) }}> #}
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                {# <div class="box-body box-profile"> #}
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Formulario</h3>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+                    <form class="form-horizontal" action="{{ path('sorteo_create')}}" method="POST" role="form" {{ form_enctype(form) }}>
+                        {% form_theme form 'AppBundle:Form:adminlte_fields_centered_form.html.twig' %}
+	                    <div class="box-body">
+                            {% include "AppBundle:Sorteo:form.html.twig" %}
+                            <div class="box-footer">
+                                <div class="col-sm-offset-4 col-sm-3">
+                                    <a href="{{ path('sorteo') }}" class="btn btn-default">
+                                        <i class="fa fa-times-circle"></i> Cancel
+                                    </a>
+                                    <button type="submit" name="subvalider" class="btn btn-primary pull-right"><i class="fa fa-edit"></i>  Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                        {# </div> #}
+                    </form>
+                {# </div> <!-- ./box-body box-profile --> #}
+            </div>
+        </div> <!-- ./col-md-6 -->
+    </div> <!-- ./row -->
+</section>
+{% endblock body %}
+
+ {% block javascripts %}
+{{ parent() }}
+<script>
+    (function($) {
+    })(jQuery);
+</script>
+{% endblock %}

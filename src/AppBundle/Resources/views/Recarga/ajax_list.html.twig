@@ -1,0 +1,56 @@
+{% for entity in entities %}
+  <tr>
+    <td class="active-row"><input type="checkbox" name="recargas[]" value="{{ entity.id }}"></td>
+    <td>{{ entity.id }}</td>
+    <td>{{ entity.codigo }}</td>
+    <td>{% if entity.fechaCreacion %}{{ entity.fechaCreacion|date('Y-m-d H:i:s') }}{% else %}No disponible{% endif %}</td>
+    <td>
+        {% if entity.tipoPagoPorMonedero == 1 %}Principal{% endif %}
+        {% if entity.tipoPagoPorMonedero == 2 %}Bono{% endif %}
+        {% if entity.tipoPagoPorMonedero == 3 %}Promocional{% endif %}
+    </td>
+    <td>${{ entity.recarga }}</td>
+    <td>${{ entity.precio }}</td>
+    <td>{% if entity.recargador %}{{ entity.recargador }}{% else %}-{% endif %}</td>
+    <td>{% if entity.fechaRecarga %}{{ entity.fechaRecarga|date('Y-m-d H:i:s') }}{% else %}-{% endif %}</td>
+    <td class="hidden-print">
+        <div class="text-center">
+            {% if not entity.recargador %}
+                <a class="btn btn-default btn-xs"
+                    data-toggle="tooltip" data-placement="top" title="Asignar recarga"
+                    href="{{ path('recarga_user', { 'id': entity.id }) }}">
+                    <i class="fa fa-user-plus"></i>
+                </a>
+                <a class="btn btn-primary btn-xs"
+                    data-toggle="tooltip" data-placement="top" title="Modificar"
+                    href="{{ path('recarga_edit', { 'id': entity.id }) }}">
+                    <i class="fa fa-edit"></i>
+                </a>
+                <a class="btn btn-danger btn-xs"
+                    data-toggle="tooltip" data-placement="top" title="Eliminar"
+                    href="{{ path('recarga_remove') }}" {{ delete_link(entity) }}>
+                    <i class="fa fa-trash"></i>
+                </a>
+            {% endif %}
+        </div>
+    </td>
+  </tr>
+{% else %}
+<tr>
+    <td colspan="10">
+        <div id="msgbox" class="alert alert-danger fade in" role="alert">
+            <strong>info !</strong> No se encontraron recargas con los criterios establecidos
+        </div>
+    </td>
+</tr>
+{% endfor %}
+
+{% include "AppBundle:Default:pagination.html.twig" %}
+<script>
+(function($) {
+
+    /* tooltip */
+    $('a[data-toggle="tooltip"]').tooltip();
+
+})(jQuery);
+</script>

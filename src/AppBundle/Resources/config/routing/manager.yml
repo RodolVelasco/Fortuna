@@ -1,0 +1,64 @@
+#admin section
+app_users:
+    pattern:  /
+    defaults: { _controller: AppBundle:AdminCustom:index }
+app_users_ajax:
+    pattern:  /userslist
+    defaults: { _controller: AppBundle:AdminCustom:ajaxList }
+    requirements: { _method: post }
+app_show_user:
+    pattern:  /show/{id}
+    defaults: { _controller: AppBundle:AdminCustom:show }
+app_new_user:
+    pattern:  /new
+    defaults: { _controller: AppBundle:AdminCustom:new }
+app_add_user:
+    pattern:  /add
+    defaults: { _controller: AppBundle:AdminCustom:add }
+    requirements: { _method: post }
+app_edit_user:
+    pattern:  /edit/{id}
+    defaults: { _controller: AppBundle:AdminCustom:edit }
+app_update_user:
+    pattern:  /update/{id}
+    defaults: { _controller: AppBundle:AdminCustom:update }
+    requirements: { _method: post }
+app_users_list:
+    pattern:  /users/list
+    defaults: { _controller: "AppBundle:AdminCustom:usersList" }
+    requirements: { _method: post }
+app_enable_users:
+    pattern:  /users/active/{etat}
+    defaults: { _controller: "AppBundle:AdminCustom:enableUsers" , etat: 1}
+    requirements: { _method: post }
+app_promote_users:
+    pattern:  /promote/{role}
+    defaults: { _controller: "AppBundle:AdminCustom:setRole" , role: user}
+    requirements: { _method: post }
+app_delete_user:
+    pattern:  /delete/{id}
+    defaults: { _controller: AppBundle:AdminCustom:delete }
+app_remove_users:
+    pattern:  /delete
+    defaults: { _controller: "AppBundle:AdminCustom:removeUsers" }
+    requirements: { _method: post }
+app_users_export:
+    pattern:  /export
+    defaults: { _controller: "AppBundle:AdminCustom:export" }
+
+
+app_profile_edit:
+    pattern:  /me/edit/{name}
+    defaults: { _controller: "AppBundle:AdminCustom:editMe" }
+app_profile_update:
+    pattern:  _me/{id}/update
+    defaults: { _controller: "AppBundle:AdminCustom:updateMe" }
+    requirements: { _method: post }
+
+app_pdf:
+    pattern:  /pdf/{users}
+    defaults: { _controller: "AppBundle:AdminCustom:pdf" }
+
+app_badge_user:
+    pattern:  /badge/{users}
+    defaults: { _controller: "AppBundle:AdminCustom:showBadge" }

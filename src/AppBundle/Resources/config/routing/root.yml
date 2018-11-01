@@ -1,0 +1,5 @@
+fortuna_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Default:index" }
+    #requirements:
+    #    path: ".*"

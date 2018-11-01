@@ -1,0 +1,24 @@
+app_default:
+    resource: "@AppBundle/Resources/config/routing/default.yml"
+    prefix:   /
+
+eventos_institucionales:
+    resource: "@AppBundle/Resources/config/routing/eventosinstitucionales.yml"
+    prefix:   /eventosinstitucionales
+
+sorteos:
+    resource: "@AppBundle/Resources/config/routing/sorteo.yml"
+    prefix:   /sorteo
+
+recargas:
+    resource: "@AppBundle/Resources/config/routing/recarga.yml"
+    prefix:   /recarga
+
+app_config:
+    resource: "@AppBundle/Resources/config/routing/config.yml"
+    prefix:   /config
+
+#admin section
+app_user_profile:
+    resource: "@AppBundle/Resources/config/routing/manager.yml"
+    prefix: /manage

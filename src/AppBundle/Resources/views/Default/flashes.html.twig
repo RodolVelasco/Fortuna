@@ -1,0 +1,14 @@
+<!-- <section class="flashbag"> -->
+{% if app.request.hasPreviousSession %}
+{% for type, flashMessages in app.session.flashbag.all() %}
+{% for flashMessage in flashMessages %}
+    <section class="content-header">
+        <div class="alert alert-{{ type }} dismissible">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong></strong>  {{ flashMessage|trans({}, 'FOSUserBundle') }}
+        </div>
+    </section>
+{% endfor %}
+{% endfor %}
+{% endif %}
+<!-- </section> -->

@@ -1,0 +1,22 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+<div class="login-logo">
+    <a href="{{ app_config.app_website }}"><b>{{ app_config.app_name }}</b></a>
+</div>
+<div class="login-box-body">
+    <p class="login-box-msg"><strong>Renovación de contraseña</strong></p>
+    <br/>
+    <p style="text-align: justify; text-justify: inter-word;">
+        {{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|raw|nl2br }}
+    </p>
+    <br/>
+    <div class="row">
+        <div align="center">
+            <a href="{{ path("fos_user_security_login") }}" class="to_register"> Ir a inicio de sesión </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

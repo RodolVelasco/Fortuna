@@ -1,0 +1,128 @@
+<div class="row">
+{% for entity in entities %}
+<div class="col-md-4">
+<div class="box box-solid">
+    <div class="box-body">
+    {#<div class="box-header with-border">
+        <h3 class="box-title">{{ entity.titulo }}</h3>
+
+    </div><!-- /.box-header --> #}
+    <!-- <div class="post"> -->
+        <div class="user-block">
+            <img class="img-circle img-bordered-sm" src="{{ asset( entity.creador.image.getwebpath ) }}" alt="User Image">
+                <span class="username">
+                    <a href="#">{{ entity.creador.fullName }}</a> <span style="font-weight:normal">sortea </span> {{ entity.titulo }}
+                    <!-- <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a> -->
+                    {# <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div> #}
+                </span>
+                <span class="description">3 fotos posteadas - hace unos minutos</span>
+        </div><!-- /.user-block -->
+        <br>
+
+        <div class="row margin-bottom">
+            <div class="col-sm-6 peopleCarouselImg">
+              <img class="img-responsive" src="{{ asset(entity.avatarPrimeraImage) }}" alt="Foto 1">
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <div class="row">
+                <div class="col-sm-12 peopleCarouselImg2">
+                  <img class="img-responsive" src="{{ asset(entity.avatarSegundaImage) }}" alt="Foto 2">
+                  <br>
+                  <img class="img-responsive" src="{{ asset(entity.avatarTerceraImage) }}" alt="Foto 3">
+                </div><!-- /.col -->
+              </div><!-- /.row -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+        <hr>
+        <strong><i class="fa fa-book margin-r-5"></i> Título</strong>
+            <p class="text-muted">
+                {{ entity.titulo }}
+            </p>
+            <hr>
+            <strong><i class="fa fa-file-text-o margin-r-5"></i> Descripción</strong>
+            <p class="text-muted">{{ entity.descripcion }}</p>
+
+            {% if entity.ganador is empty %}
+            <hr>
+            <strong><i class="fa fa-check-square-o margin-r-5"></i>Números disponibles</strong>
+            <p class="text-muted">
+                {% set numDisponibles = entity.participantes|length %}
+                {% set numComprados = 0 %}
+                {% for comprado in entity.participantes %}
+                    {% if comprado.user is not null  %}
+                        {% set numComprados = numComprados + 1 %}
+                    {% endif %}
+                {% endfor %}
+                {{ numDisponibles - numComprados  }}
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CHIEF') %}
+                    <a class="btn btn-danger btn-sm pull-right" data-toggle="tooltip" data-placement="top" title="Eliminar"
+                        {# href="{{ path('sorteo_delete', { 'id': entity.id }) }} "#}
+                        href="#">
+                        <i class="fa fa-trash"></i>
+                    </a>
+
+                    {% if (0 == (numDisponibles - numComprados)) %}
+                        <a class="btn btn-info btn-sm pull-right" style="margin-right: 3px;" data-toggle="tooltip" data-placement="top" title="Genera ganador"
+                            href="{{ path('sorteo_genera_ganador', { 'id': entity.id }) }}">
+                            <i class="fa fa-random"></i>
+                        </a>
+                    {% endif %}
+
+                    <a class="btn btn-primary btn-sm pull-right" style="margin-right: 3px;" data-toggle="tooltip" data-placement="top" title="Modificar"
+                        href="{{ path('sorteo_edit', { 'id': entity.id }) }}">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                {% endif %}
+                {% if (entity.ganador is empty) %}
+                    <a class="btn btn-success btn-sm pull-right" style="margin-right: 3px;" data-toggle="tooltip" data-placement="top" title="Participa"
+                        href="{{ path('sorteo_participa', { 'id': entity.id }) }}">
+                        <i class="fa fa-shopping-cart"></i>
+                        {% if not is_granted('ROLE_ADMIN') or not is_granted('ROLE_CHIEF') %}
+                            Participa
+                        {% endif %}
+                    </a>
+                {% endif %}
+            </p>
+            {% endif %}
+
+            {% if entity.ganador is not empty  %}
+            <hr>
+            <strong><i class="fa fa-trophy margin-r-5"></i>aFortunado (Ganador)</strong>
+            <p class="text-muted">
+                {{ entity.ganador.username }}
+                <a class="btn btn-default btn-sm pull-right" data-toggle="tooltip" data-placement="top"
+                   title="resultados" href="{{ path('sorteo_participa', { 'id': entity.id }) }}">
+                   <i class="fa fa-search"></i> Ver resultados
+                </a>
+            </p>
+            {% endif %}
+            <!-- </div> --><!-- /.post -->
+    </div><!-- ./box-body -->
+</div><!-- /.box box-primary -->
+</div>
+{% else %}
+<div class="col-md-12">
+    <div class="box box-solid">
+        <div class="box-body">
+            <div id="msgbox" class="alert alert-info fade in" role="alert">
+                <strong>Info !</strong> No se encontraron sorteos con los criterios establecidos
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+</div>
+
+{% include "AppBundle:Default:pagination.html.twig" %}
+<script>
+(function($) {
+
+    /* tooltip */
+    $('a[data-toggle="tooltip"]').tooltip();
+
+})(jQuery);
+</script>

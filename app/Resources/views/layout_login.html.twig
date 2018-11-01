@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>{% block title %}{{ app_config.app_name }}{% endblock %}</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        {% block stylesheets %}
+          <!-- Bootstrap 3.3.6 -->
+          <link rel="stylesheet" href="{{ asset('AdminLTE/bootstrap/css/bootstrap.min.css') }}">
+          <!-- Font Awesome -->
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+          <!-- Ionicons -->
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+          <!-- Theme style -->
+          <link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/AdminLTE.min.css') }}">
+
+          <!-- bootstrap datepicker -->
+          <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/datepicker/datepicker3.css') }}">
+          <!-- Select2 -->
+          <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/select2/select2.min.css') }}">
+
+          <link href="{{ asset('bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css') }}" rel="stylesheet">
+
+
+
+
+          <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+       {# <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">#}
+          <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/iCheck/square/blue.css') }}">
+          <!-- Google Font -->
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+        {% endblock %}
+        {# skin-blue	skin-blue-light	skin-yellow	skin-yellow-light
+        skin-green	skin-green-light skin-purple	skin-purple-light	skin-red
+        skin-red-light	skin-black	skin-black-light #}
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body class="hold-transition login-page">
+      <div class="login-box">
+        {% block body %}
+
+        {% endblock %}
+      </div>
+    </div>
+    {% block javascripts %}
+    <!-- REQUIRED JS SCRIPTS -->
+    <!-- jQuery 3.1.1 -->
+    <script src="{{ asset('AdminLTE/plugins/jQuery/jQuery-3.1.1.min.js') }}"></script>
+    <script src="{{ asset('AdminLTE/bootstrap/js/bootstrap.min.js') }}"></script>
+    {# <script src="{{ asset('js/more/jquery.min.js') }}"></script> #}
+
+    <script src="{{ asset('jquery-mask-plugin/dist/jquery.mask.min.js') }}"></script>
+
+    <!-- Select2 -->
+    <script src="{{ asset('AdminLTE/plugins/select2/select2.full.min.js') }}"></script>
+    <!-- date-range-picker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+    <script src="{{ asset('AdminLTE/plugins/daterangepicker/daterangepicker.js') }}"></script>
+    <!-- bootstrap datepicker -->
+    <script src="{{ asset('AdminLTE/plugins/datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('AdminLTE/plugins/datepicker/locales/bootstrap-datepicker.es.js') }}"></script>
+
+    <script src="{{ asset('bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js') }}"></script>
+
+    <!-- iCheck 1.0.1 -->
+    <script src="{{ asset('AdminLTE/plugins/iCheck/icheck.min.js') }}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset('AdminLTE/plugins/fastclick/fastclick.js') }}"></script>
+    <script>
+      $(function () {
+        //alert("hola");
+        $('input').iCheck({
+          checkboxClass: 'icheckbox_square-blue',
+          radioClass: 'iradio_square-blue',
+          increaseArea: '20%' // optional
+        });
+
+        $(".select2").select2();
+
+        //$('#fos_user_registration_form_fechaNacimiento').datepicker({$.datepicker.regional['es']});
+        $('#fos_user_registration_form_fechaNacimiento').datepicker({
+            format: 'yyyy-mm-dd',
+            language: "es",
+            locale: "es",
+            changeYear: true,
+            autoclose: true
+        });
+
+        $('#fos_user_registration_form_sexo').bootstrapToggle({});
+
+
+        $('#fos_user_registration_form_telefono').mask('0000-0000');
+        $('#fos_user_registration_form_dui').mask('00000000-0');
+        
+        //alert("Hi");
+        //$("[data-mask]").inputmask();
+      });
+    </script>
+    {% endblock %}
+    </body>
+</html>

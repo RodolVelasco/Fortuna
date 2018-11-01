@@ -1,0 +1,130 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block title %}
+Participa | {{ parent() }}
+{% endblock %}
+{% block stylesheets2 %}
+<style type="text/css">
+.peopleCarouselImg img {
+  width: auto;
+  height: 225px;
+  max-height: 225px;
+}
+.peopleCarouselImg2 img {
+  width: auto;
+  height: 100;
+  max-height: 100px;
+}
+</style>
+{% endblock %}
+{% block body %}
+<section class="content-header">
+  <h1>
+    <i class="fa fa-random"></i> Participa en el sorteo
+    <small></small>
+  </h1>
+  {% include 'AppBundle:Default:breadcrumb.html.twig' %}
+</section>
+
+{# <form action="{{ path('recepcion_pago_update', { 'id': entity.id }) }}"  class="form-horizontal col-md-8" method="post" {{ form_enctype(form) }}> #}
+<section class="content">
+    <div class="row">
+        {# <div class="col-xs-12"> #}
+        {# <div class="col-md-3"></div> #}
+        <div class="col-md-12">
+            {# <div class="box box-primary"> #}
+                    {# <div class="box-header with-border"><h3 class="box-title">Participa</h3></div><!-- /.box-header --> #}
+                    <!-- form start -->
+                    {# <form class="form-horizontal" action="{{ path('sorteo_participa_update', { 'id': entity.id }) }}" method="POST" role="form" {{ form_enctype(form) }}> #}
+	                    {# <div class="box-body"> #}
+                            {% include "AppBundle:Sorteo:form_participa.html.twig" %}
+                            {# <div class="box-footer">
+                                <button type="#" class="btn btn-default"><span class="glyphicon glyphicon-remove-circle"></span>  Cancel</button>
+                                <button type="submit" name="subvalider" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-edit"></span>  Guardar</button>
+                            </div> #}
+                        {# </div> #}
+                    {# </form> #}
+            {# </div><!-- ./box box-primary --> #}
+        </div> <!-- ./col-md-12 -->
+        {# <div class="col-md-3"></div> #}
+    </div> <!-- ./row -->
+</section>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script>
+(function($) {
+
+    /* tooltip */
+    $('[data-toggle="tooltip"]').tooltip();
+
+    /* helper functions */
+    function getCheckedRows () {
+      var users = [];
+        dataContainer.find('input:checkbox:checked').each(function() {
+          users.push($(this).val());
+        });
+        return users.join(',');
+    }
+    function isSelected () {
+        if (!getCheckedRows()) {
+          alert('Se debe seleccionar al menos un número para participar');
+          return false;
+        };
+        return true;
+      }
+    function init(){
+      checkboxBtn.prop("checked",false);
+      jsFormUrl = '{{ path('sorteo_participa_ajax', { 'id': id }) }}';
+      {# jsFormUrl = '{{ path('sorteo_participa_ajax') }}'; #}
+    }
+
+    function ajaxPost(action, callback) {
+      form.addClass('working');
+      $.ajax({
+        type: "POST",
+        data: form.serialize(),
+        url: jsFormUrl,
+        success: function(data){
+          form.removeClass('working');
+          if(callback) callback(data);
+          init();
+          if(!action) dataContainer.empty().hide().html(data).fadeIn();
+          else ajaxPost();
+        },
+        error:function(){
+            form.removeClass('working');
+        }
+      });
+      return false;
+    }
+
+    /* ajax dashboard*/
+    var form = $('#jsForm'),
+    dataContainer = form.find('#dataContainer'),
+    jsFormUrl = '',
+    participarBtn = form.find('#js-participar'),
+    checkboxBtn = form.find("input:checkbox");
+
+    /* participar */
+    participarBtn.on('click', function(){
+      if (!isSelected() || !confirmation('¿Está seguro que desea participar con los números seleccionados?')) return false;
+      {# var url = '{{ path('sorteo_participa_ajax_post', {'id': id, 'numerosParticipantes': 1111 }) }}', #}
+      var url = '{{ path('sorteo_participa_ajax_post', { 'id': id }) }}';
+          //numerosParticipantes = getCheckedRows();
+      //numerosParticipantes = (numerosParticipantes==='')? 'nothing':numerosParticipantes;
+      //url = url.replace("1111", numerosParticipantes);
+      //alert("==>" + jsFormUrl);
+      //window.location.href = url;
+      jsFormUrl = url;
+      ajaxPost();
+    });
+
+
+    form.on('submit', ajaxPost);
+    /* submit the form after loading the page*/
+    init();
+    ajaxPost();
+
+})(jQuery);
+</script>
+{% endblock %}

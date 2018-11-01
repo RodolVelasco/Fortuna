@@ -1,0 +1,16 @@
+{% set route = app.request.attributes.get('_route') %}
+
+{% set configMenu = ['config'] %}
+{% set userMenu = ['app_users','app_show_user','app_new_user','app_edit_user'] %}
+{% set recargaMenu = ['recarga','recarga_show','recarga_new','recarga_edit'] %}
+
+
+{# <li><a href="{{ path('app_dashboard') }}"><i class="fa fa-lightbulb-o"></i> <span>Test</span></a></li> #}
+{% if is_granted("ROLE_ADMIN") %}
+<li class="header"></i>CONFIGURACIÓN</li>
+    <li class="{% if route not in userMenu %}not-{% endif %}current"><a href="{{ path('app_users') }}"><i class="fa fa-users"></i> <span class="menu-title">Usuarios</span></a></li>
+    <li class="{% if route not in recargaMenu %}not-{% endif %}current"><a href="{{ path('recarga') }}"><i class="fa fa-barcode"></i> <span class="menu-title">Recargas</span></a></li>
+    <li class="{% if route not in configMenu %}not-{% endif %}current"><a href="{{ path('config') }}"><i class="fa fa-wrench"></i></span> <span class="menu-title">Preferencias</span></a></li>
+    {# <li class="{% if route not in userMenu %}not-{% endif %}current"><a href="{{ path('app_users') }}"><span class="glyphicon glyphicon-lock block"></span> <span class="menu-title">Usuarios</span></a></li> #}
+{% endif %}
+{# <li class="not-current"><a href="#" id="trigger-shelf"><span class="glyphicon glyphicon-chevron-left block"></span>  <span class="menu-title">Collapse menu</span></a></li> #}

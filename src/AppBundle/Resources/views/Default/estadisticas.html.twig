@@ -1,0 +1,102 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block title %}
+Sorteos | {{ parent() }}
+{% endblock %}
+{% block stylesheets2 %}
+<style type="text/css">
+.peopleCarouselImg img {
+  width: auto;
+  height: 170px;
+  max-height: 170px;
+}
+.peopleCarouselImg2 img {
+  width: auto;
+  height: 75px;
+  max-height: 75px;
+}
+</style>
+{% endblock %}
+{% block body %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    <i class="fa fa-bar-chart-o"></i> Estadísticas
+    <small>Todas</small>
+  </h1>
+  {#{% include 'AppBundle:Default:breadcrumb.html.twig' %}#}
+</section>
+
+<!-- Main content -->
+<section class="content">
+<div class="row">
+        {# <div class="col-xs-12">
+          <div class="box box-primary">
+            <div class="box-header">
+              <h3 class="box-title"></h3>
+            </div><!-- /.box-header --> #}
+            <div class="box-body">
+
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                  <span class="info-box-icon bg-aqua">
+                    <i class="fa fa-random"></i>
+                  </span>
+                  <div clasS="info-box-content">
+                    <span class="info-box-text">SORTEOS</span>
+                    <span class="info-box-number">{{ sorteos }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                  <span class="info-box-icon bg-red">
+                    <i class="fa fa-trophy"></i>
+                  </span>
+                  <div clasS="info-box-content">
+                    <span class="info-box-text">GANADORES</span>
+                    <span class="info-box-number">{{ ganadores }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                  <span class="info-box-icon bg-green">
+                    <i class="ion ion-ios-cart-outline"></i>
+                  </span>
+                  <div clasS="info-box-content">
+                    <span class="info-box-text">NÚMEROS VENDIDOS</span>
+                    <span class="info-box-number">{{ numerosVendidos }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                  <span class="info-box-icon bg-yellow">
+                    <i class="ion ion-ios-people-outline"></i>
+                  </span>
+                  <div clasS="info-box-content">
+                    <span class="info-box-text">USUARIOS</span>
+                    <span class="info-box-number">{{ usuarios }}</span>
+                  </div>
+                </div>
+              </div>
+        {# </div><!-- /.box-body -->
+    </div><!-- /.box -->
+  </div> <!-- ./ class row --> #}
+</section>
+<!-- /.content -->
+
+{# <div class="clearfix"></div> #}
+{% endblock body %}
+
+ {% block javascripts %}
+{{ parent() }}
+<script>
+    (function($) {
+
+    })(jQuery);
+</script>
+{% endblock %}

@@ -1,0 +1,96 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-default">
+            <div class="box-body">
+                {#<div class="box-header with-border">
+                    <h3 class="box-title">{{ entity.titulo }}</h3>
+
+
+                </div><!-- /.box-header --> #}
+                <!-- <div class="post"> -->
+                <div class="col-md-5">
+                <div class="user-block">
+                    <img class="img-circle img-bordered-sm" src="{{ asset( entity.creador.image.getwebpath ) }}" alt="User Image">
+                        <span class="username">
+                            <a href="#">{{ entity.creador.fullName }}</a>
+                            <span style="font-weight:normal">está rifando un</span>
+                            {{ entity.titulo }}
+                            <!-- <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a> -->
+                            {# <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div> #}
+                        </span>
+                        <span class="description">Publicó 3 fotos - hace un momento</span>
+                </div><!-- /.user-block -->
+                <br>
+                <div class="row margin-bottom">
+                    <div class="col-sm-6 peopleCarouselImg">
+                        <img class="img-responsive" src="{{ asset(entity.avatarPrimeraImage) }}" alt="Foto 1">
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-12 peopleCarouselImg2">
+                                <img class="img-responsive" src="{{ asset(entity.avatarSegundaImage) }}" alt="Foto 2">
+                                <br>
+                                <img class="img-responsive" src="{{ asset(entity.avatarTerceraImage) }}" alt="Foto 3">
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+                <hr>
+                <strong><i class="fa fa-book margin-r-5"></i> Título</strong>
+                    <p class="text-muted">
+                        {{ entity.titulo }}
+                    </p>
+                    <hr>
+                    <strong><i class="fa fa-file-text-o margin-r-5"></i> Descripción</strong>
+                    <p class="text-muted">{{ entity.descripcion }}</p>
+                    <hr>
+                    <strong><i class="fa fa-money margin-r-5"></i>Precio</strong>
+                    <p class="text-muted">
+                        $ {{ entity.precio }}
+                    </p>
+                    {% if entity.ganador is not empty %}
+                    <hr>
+                    <strong><i class="fa fa-trophy margin-r-5"></i>Ganador</strong>
+                    <p class="text-muted">
+                        {{ entity.ganador.fullName }}
+                    </p>
+                    {% endif %}
+
+                    <div class="text-center">
+                        {# <!-- <a class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="top" title="Ver" href="{{ path('app_show_user', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-search"></span></a> --> #}
+                        {# <a class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="top" title="participa" href="{{ path('sorteo_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-edit"></span></a> #}
+                    </div>
+                    </div><!-- ./col-md-5 -->
+
+
+                    <div class="col-md-7">
+                        <div class="user-block">
+                            <img class="img-circle img-bordered-sm" src="{{ asset('img/bc1.png') }}" alt="User Image">
+                            <span class="username">
+                                <div class="fa fa-dollar"></div>
+                                <a href="#">Participa
+                                    <!-- <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a> -->
+                                    {# <div class="box-tools pull-right"><button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button><button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button></div> #}
+                            </span>
+                            <span class="description">Elige tu(s) número(s) para participar</span>
+                        </div><!-- /.user-block -->
+                        <br>
+                        <form  id="jsForm" role="form" method="post" action="">
+                            <div id="dataContainer"></div>
+                            <div class="modal-footer">
+                                {# <button type="submit" class="btn btn-primary">Participar</button> #}
+                                {% if entity.ganador is empty %}
+                                <a href="#" id="js-participar" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Participa con los números seleccionados"><span class="glyphicon glyphicon-check"></span> Participa</a>
+                                {% endif %}
+                            </div>
+                        </form>
+                    </div>
+                        <!-- </div> --><!-- /.post -->
+
+                </div><!-- ./box-body -->
+            </div><!-- /.box box-primary -->
+        </div>
+    </div>

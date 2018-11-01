@@ -1,0 +1,29 @@
+
+{#<div class="form-group ">
+    <label class="col-xs-4 col-sm-3 col-md-3 col-lg-4 control-label" for="redeemCode" class="required">
+        Código de recarga
+    </label>
+    <div class="col-xs-4 col-sm-50 col-md-50 col-lg-1">
+        <input type="text" id="redeemCodeA" name="redeemCodeA" class="form-control" maxlength="4"/>
+    </div>
+    <div class="col-xs-4 col-sm-50 col-md-50 col-lg-1">
+        <input type="text" id="redeemCodeB" name="redeemCodeB" class="form-control" maxlength="4"/>
+    </div>
+    <div class="col-xs-4 col-sm-50 col-md-50 col-lg-1">
+        <input type="text" id="redeemCodeC" name="redeemCodeC" class="form-control" maxlength="4"/>
+    </div>
+    <div class="col-xs-4 col-sm-50 col-md-50 col-lg-1">
+        <input type="text" id="redeemCode4" name="redeemCodeD" class="form-control" maxlength="4"/>
+    </div>
+</div>
+#}
+<div class="form-group ">
+    <label class="col-xs-4 col-sm-3 col-md-3 col-lg-4 control-label" for="redeemCode" class="required">
+        Código de recarga
+    </label>
+    {{ form_widget(form.redeemCodeA, {'attr': {'maxlength': '4', 'placeholder':'1ro','style':'margin-bottom:10px;;'}}) }}
+    {{ form_widget(form.redeemCodeB, {'attr': {'maxlength': '4', 'placeholder':'2do','style':'margin-bottom:10px;;'}}) }}
+    {{ form_widget(form.redeemCodeC, {'attr': {'maxlength': '4', 'placeholder':'3ro','style':'margin-bottom:10px;;'}}) }}
+    {{ form_widget(form.redeemCodeD, {'attr': {'maxlength': '4', 'placeholder':'4to','style':'margin-bottom:10px;;'}}) }}
+    {{ form_rest(form) }}
+</div>

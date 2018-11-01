@@ -1,0 +1,53 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="login-logo">
+    <a href="{{ app_config.app_website }}"><b>{{ app_config.app_name }}</b></a>
+</div>
+<div class="login-box-body">
+    {# <div align="center"><a href="#"><h1>{{ app_config.app_name }}</h1></a></div> #}
+    <p class="login-box-msg">Ingresa usuario y contraseña para iniciar sesión</p>
+    {% if error %}
+    <div class="alert alert-danger fade in">
+        {# <strong><i class="icon-warning-sign"></i> Error : </strong> {{ error|trans({}, 'FOSUserBundle') }} #}
+        <strong><i class="icon-warning-sign"></i> Error: </strong> {{ error.messageKey|trans(error.messageData, 'security') }}
+    </div>
+    {% endif %}
+
+    <form action="{{ path("fos_user_security_check") }}" method="post">
+        {% if csrf_token %}
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        {% endif %}
+
+        <div class="form-group has-feedback">
+            <input type="text" class="form-control" placeholder="{{ 'security.login.username'|trans }}" name="_username" value="{{ last_username }}" required autofocus/>
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        </div>
+
+        <div class="form-group has-feedback">
+            <input type="password" class="form-control" placeholder="{{ 'security.login.password'|trans }}" name="_password" required/>
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="checkbox icheck">
+                    <label>
+                        <input type="checkbox" name="_remember_me" value="on">
+                        {{ 'security.login.remember_me'|trans }}
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                {# <button class="btn btn-primary btn-block btn-flat" type="submit">Ingresar</button> #}
+                <input type="submit" class="btn btn-primary btn-block btn-flat" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+            </div>
+        </div>
+    </form>
+    <div class="social-auth-links text-center">
+        <p>- Redes sociales -</p>
+        <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Inicia sesión usando Facebook</a>
+        <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Inicia sesión usando Google+</a>
+    </div>
+    ¿Olvidaste tu contraseña?<a class="reset_pass" href="{{ path("fos_user_resetting_request") }}"> Recupérala</a><br>
+    ¿Eres nuevo?<a href="{{ path("fos_user_registration_register") }}" class="to_register"> Regístrate</a>
+</div> <!-- ./login-box-body -->

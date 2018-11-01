@@ -1,0 +1,30 @@
+config:
+    pattern:  /
+    defaults: { _controller: "AppBundle:Config:index" }
+
+config_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "AppBundle:Config:show" }
+
+config_new:
+    pattern:  /new
+    defaults: { _controller: "AppBundle:Config:new" }
+
+config_create:
+    pattern:  /create
+    defaults: { _controller: "AppBundle:Config:create" }
+    requirements: { _method: post }
+
+config_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "AppBundle:Config:edit" }
+
+config_update:
+    pattern:  /update
+    defaults: { _controller: "AppBundle:Config:update" }
+    requirements: { _method: post }
+
+config_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "AppBundle:Config:delete" }
+    requirements: { _method: post }

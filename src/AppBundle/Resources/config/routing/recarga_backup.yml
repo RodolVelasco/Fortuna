@@ -1,0 +1,40 @@
+recarga:
+    path:     /
+    defaults: { _controller: "AppBundle:Recarga:index" }
+
+recarga_ajax:
+    path:     /ajaxlist
+    defaults: { _controller: "AppBundle:Recarga:ajaxList" }
+    requirements: { _method: post }
+
+recarga_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Recarga:show" }
+
+recarga_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Recarga:new" }
+
+recarga_create:
+    path:     /create
+    defaults: { _controller: "AppBundle:Recarga:create" }
+    requirements: { _method: post }
+
+recarga_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Recarga:edit" }
+
+recarga_update:
+    path:     /{id}/update
+    defaults: { _controller: "AppBundle:Recarga:update" }
+    requirements: { _method: post|put }
+
+recarga_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Recarga:delete" }
+    requirements: { _method: post|delete }
+
+recarga_remove:
+    path:     /remove
+    defaults: { _controller: "AppBundle:Recarga:remove" }
+    requirements: { _method: post|delete }

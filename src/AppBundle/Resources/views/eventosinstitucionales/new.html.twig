@@ -1,0 +1,126 @@
+{# {% extends 'PetkoparaCrudGeneratorBundle::base.html.twig' %} #}
+{% extends "@FOSUser/layout_once_logged_in.html.twig" %}
+
+{% block title %}
+{{ parent() }} - Agregar evento institucional
+{% endblock %}
+
+{% block stylesheets_1 %}
+<!-- Select2 -->
+<link href="{{ asset('gentelella/select2/dist/css/select2.min.css') }}" rel="stylesheet">
+<!-- Switchery -->
+<link href="{{ asset('gentelella/switchery/dist/switchery.min.css') }}" rel="stylesheet">
+<!-- starrr -->
+<link href="{{ asset('gentelella/starrr/dist/starrr.css" rel="stylesheet') }}">
+<!-- bootstrap-daterangepicker -->
+<link href="{{ asset('gentelella/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Eventos Institucionales</h3>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Formulario de registro
+                    </h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    {% for type, flashMessages in app.session.flashbag.all() %}
+                    {% for flashMessage in flashMessages %}
+                    <div class="alert alert-{{ type }} alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                        </button>
+                        <strong></strong> {{ flashMessage|raw }}
+                    </div>
+                    {% endfor %}
+                    {% endfor %}
+                    <br/>
+                    {{ form_start(form, { 'attr': { 'class': 'form-horizontal form-label-left' } }) }}
+                    {% form_theme form 'AppBundle:Form:fields_centered_form.html.twig' %}
+                    {# {{ form_widget(form) }} #}
+                    <fieldset>
+                        <legend>Información general del programa</legend>
+                        {{ form_row(form.nombreInstitucion, {'label': 'Nombre de la institución'}) }}
+                        {{ form_row(form.direccionResponsablePrograma, {'label': 'Dirección del responsable'}) }}
+                        {{ form_row(form.nombrePrograma, {'label': 'Nombre del programa'}) }}
+                        {{ form_row(form.nombreContactoResponsablePrograma, {'label': 'Nombre del contacto responsable'}) }}
+                        {{ form_row(form.telefonoContactoResponsablePrograma, {'label': 'Teléfono del contacto responsable'}) }}
+                        {{ form_row(form.emailContactoResponsablePrograma, {'label': 'Email del contacto responsable'}) }}
+                    </fieldset>
+                    <br/><br/>
+                    <fieldset>
+                        <legend>Detalles del programa</legend>
+                        {{ form_row(form.actividad, {'label': 'Actividad'}) }}
+                        {{ form_row(form.departamento) }}
+                        {{ form_row(form.lugar) }}
+                        {{ form_row(form.fecha) }}
+                        {{ form_row(form.hora) }}
+                        {{ form_row(form.minuto) }}
+                        {{ form_row(form.poblacionObjetivo, {'label': 'Población objetivo'}) }}
+                        {{ form_row(form.numeroParticipantes, {'label': 'Número de participantes'}) }}
+                    </fieldset>
+                    <br/><br/>
+                    <fieldset>
+                        <legend>Información del encargado de la actividad</legend>
+                        {{ form_row(form.nombreContactoResponsableActividad, {'label': 'Nombre'}) }}
+                        {{ form_row(form.telefonoContactoResponsableActividad, {'label': 'Teléfono'}) }}
+                        {{ form_row(form.emailContactoResponsableActividad, {'label': 'Email'}) }}
+                    </fieldset>
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <a class="btn btn-default" href="{{ path('eventosinstitucionales') }}">
+                                <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                                Regresar
+                            </a>
+                            <button type="submit" name="submit" value="save" class="btn btn-primary">
+                                Guardar <span class="fa fa-check-circle" aria-hidden="true"></span>
+                            </button>
+                            <button type="submit" name="submit" value="saveAndAdd" class="btn btn-info">
+                                Guardar y Agregar <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div> <!-- x-content -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts_1 %}
+
+<script language="javascript">
+$(document).ready(function(){
+
+    $('#eventos_institucionales_fecha').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true,
+        locale: {
+            format: 'YYYY-MM-DD'
+        }
+    });
+    $('#eventos_institucionales_departamento').select2({
+        //$( this ).css( "background-color":"black" );
+        containerCssClass: "container",
+        dropdownCssClass: "dropdown"
+    });
+    //$('#eventos_institucionales_departamento').css({'color':'black'});
+    /*$("p").click(function(){
+    $(this).hide();
+});
+*/
+});
+</script>
+{% endblock %}

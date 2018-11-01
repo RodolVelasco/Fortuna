@@ -1,0 +1,49 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block title %}
+Usuario | {{ parent() }}
+{% endblock %}
+{% block body %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    <i class="fa fa-user"></i> Usuario
+    <small>Agregar nuevo usuario</small>
+  </h1>
+  {#{% include 'AppBundle:Default:breadcrumb.html.twig' %}#}
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    {# <h3 class="box-title">Formulario</h3>#}
+                </div><!-- /.box-header -->
+                    <form class="form-horizontal" action="{{ path('app_add_user')}}" method="POST" role="form" {{ form_enctype(form) }}>
+                        {% form_theme form 'AppBundle:Form:adminlte_fields_centered_form.html.twig' %}
+                        <div class="box-body">
+                            {% include "AppBundle:Admin:form.html.twig" %}
+                            <div class="box-footer">
+                                {# <div class="form-group"> #}
+                                    <div class="col-sm-offset-4 col-sm-3">
+                                        <a type="{{ path('app_users') }}" class="btn btn-default"><span class="glyphicon glyphicon-remove-circle"></span>  Cancel</a>
+                                        <button type="submit" name="subvalider" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-edit"></span>  Guardar</button>
+                                    </div>
+                                {# </div> #}
+                                </div>
+                            </div>
+                        {# </div> #}
+                    </form>
+                {# </div> <!-- ./box-body box-profile --> #}
+            </div>
+        </div> <!-- ./col-xs-12 -->
+    </div> <!-- ./row -->
+</section>
+{% endblock body %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+    (function($) {
+    })(jQuery);
+</script>
+{% endblock %}

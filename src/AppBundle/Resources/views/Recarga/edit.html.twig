@@ -1,0 +1,49 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block title %}
+Recarga | {{ parent() }}
+{% endblock %}
+{% block body %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    <i class="fa fa-random"></i> Recarga
+    <small>Modificar información de recarga</small>
+  </h1>
+  {#{% include 'AppBundle:Default:breadcrumb.html.twig' %}#}
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-default">
+                    <div class="box-header with-border"><h3 class="box-title">Formulario</h3></div><!-- /.box-header -->
+                    <form class="form-horizontal" action="{{ path('recarga_update', {id: entity.id})}}" method="POST" role="form">
+                        {% form_theme form 'AppBundle:Form:adminlte_fields_centered_form.html.twig' %}
+                        <div class="box-body">
+                                {% include "AppBundle:Recarga:form_individual.html.twig" %}
+                                <div class="box-footer">
+                                    <div class="col-sm-offset-4 col-sm-3">
+                                        <a href="{{ path('recarga') }}" class="btn btn-default">
+                                            <i class="fa fa-times-circle-o"></i> Cancelar
+                                        </a>
+                                        <button type="submit" name="subvalider" class="btn btn-primary pull-right">
+                                            <i class="fa fa-edit"></i> Guardar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+            </div>
+        </div> <!-- ./col-xs-12 -->
+    </div> <!-- ./row -->
+</section>
+{% endblock body %}
+
+ {% block javascripts %}
+{{ parent() }}
+<script>
+    (function($) {
+        $('#recarga_individual_type_codigo').val($('#recarga_individual_type_codigo').val().replace(new RegExp(' - ', 'g'),"") );
+    })(jQuery);
+</script>
+{% endblock %}

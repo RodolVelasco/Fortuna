@@ -1,0 +1,84 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+<div class="login-logo">
+    <a href="{{ app_config.app_website }}"><b>{{ app_config.app_name }}</b></a>
+</div>
+<div class="login-box-body">
+    <p class="login-box-msg"><strong>Crea tu cuenta</strong></p>
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    {% form_theme form 'AppBundle:Form:fields_for_fos_registration.html.twig' %}
+    {{ form_row(form.email) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.plainPassword.first) }}
+    {{ form_row(form.plainPassword.second) }}
+    {{ form_row(form.nombre) }}
+    {{ form_row(form.apellido) }}
+    {{ form_row(form.telefono, { 'attr': {'placeholder': '#### - ####'} }) }}
+    {{ form_row(form.dui, { 'attr': {'placeholder': '######## - #'} }) }}
+    {{ form_row(form.fechaNacimiento) }}
+    {{ form_row(form.sexo) }}
+    {{ form_rest(form) }}
+    <hr/>
+    <div class="row">
+        <div class="col-xs-8">
+          <div class="checkbox icheck"></div>
+            <label style="font-size:12px;">
+              <input type="checkbox" required=""></input>
+                Acepto los 
+                <a href="#" data-toggle-tool="tooltip" data-placement="top" data-toggle="modal" data-target=".bs-example-modal-sm">
+                    términos y condiciones
+                </a>
+            </label>
+          
+        </div>
+        <div class="col-xs-4">
+            <input type="submit" class="btn btn-primary btn-block btn-flat" value="{{ 'registration.submit'|trans }}" />
+        </div>
+    </div>
+    {{ form_end(form) }}
+    <br/>
+    <div class="row">
+        <div align="center">
+            <a href="{{ path("fos_user_security_login") }}"> Ir a inicio de sesión </a>
+        </div>
+    </div>
+</div>
+<!-- Small modal -->
+<div class="modal fade bs-example-modal-sm" id="fortunaModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            {#<form action="{{ path('sorteo_participa_checkbox_click') }}" method="post">#}
+            <!-- <form id="jsFormModal" role="form" method="post" action=""> -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel2">Términos y condiciones</h4>
+            </div>
+            <div class="modal-body" align="justify">
+                <h4>Derechos de propiedad</h4>
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem</p>
+                <h4>Licencia limitada</h4>
+                    <p>Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem</p>
+                <h4>Uso prohibido</h4>
+                    <p>Ue laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremq</p>
+                <h4>Marcas comerciales</h4>
+                    <p>Natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem aliquam quaerat voluptatem aliquam quaerat voluptatem</p>
+                <h4>Licencia limitada</h4>
+                    <p>Ed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem</p>
+                <h4>Información de usuario</h4>
+                    <p>Doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem</p>
+                <h4>Materiales presentados</h4>
+                    <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem</p>
+                <h4>Condición prohibida del usuario</h4>
+                    <p>Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+            <!-- </form> -->
+        </div>
+    </div>
+</div>
+<!-- /modals -->
+{% endblock %}

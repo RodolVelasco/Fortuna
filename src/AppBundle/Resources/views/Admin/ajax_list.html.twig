@@ -1,0 +1,29 @@
+{% for entity in entities %}
+  <tr>
+    <td {% if entity.enabled %}class="active-row"{% endif %}><input type="checkbox" name="users[]" value="{{ entity.id }}"></td>
+    <td>{{ entity.username }}</td>
+    <td>{{ entity.fullName }}</td>
+    <td>${{ entity.saldoPrincipal }}</td>
+    <td>${{ entity.saldoBono }}</td>
+    <td>${{ entity.saldoPromocional }}</td>
+    <td>{{ entity.email }}</td>
+    <td>{{ entity.telefono }}</td>
+    
+    <td class="hidden-print">
+        <div class="text-center">
+            <a class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="top" title="Ver" href="{{ path('app_show_user', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-search"></span></a>
+            <a class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Modificar" href="{{ path('app_edit_user', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-edit"></span></a>
+        </div>
+    </td>
+  </tr>
+{% endfor %}
+
+{% include "AppBundle:Default:pagination.html.twig" %}
+<script>
+(function($) {
+
+    /* tooltip */
+    $('a[data-toggle="tooltip"]').tooltip();
+
+})(jQuery);
+</script>

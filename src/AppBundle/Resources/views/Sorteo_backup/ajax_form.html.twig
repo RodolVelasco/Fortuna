@@ -1,0 +1,28 @@
+<table class="table table-condensed">
+<tbody>
+{% set contador = 0 %}
+{% for numero in numeros %}
+{% if (contador == 0) %}<tr>{% endif %}
+    <td>
+      <input type="checkbox" name="numerosParticipantes[]" value="{{ numero.id }}" 
+      data-toggle="tooltip" data-placement="top" title="{% if (numero.user.fullName is defined) %}{% if (numero.user.fullName is not empty) %}{{ numero.user.fullName }}{% endif %}{% endif %}"
+      {% if numero.user != null %}
+        disabled="disabled" checked="checked"
+        {# checked="checked" onclick="return false;" onkeydown="e = e || window.event; if(e.keyCode !== 9) return false;" #}
+      {% endif %}
+      >{{ numero.numero }}
+    </td>
+{% set aux = contador%9 %}
+{% if (aux == 0) and (contador != 0) %}</tr><tr>{% endif %}
+{% set contador = contador + 1 %}
+{% endfor %}
+{% set winner = app.session.get('winner') %}
+{% set winnerNumber = app.session.get('winnerNumber') %}
+{% if (winner is defined) and (winnerNumber is defined) %}
+    {% if (winner is not empty) and (winnerNumber is not empty) %}
+        <tr><td colspan="9"><h2>El ganador de esta rifa es <strong>{{ winner }}</strong> con el número {{ winnerNumber }}</h2></td></tr>
+    {% endif %}
+{% endif %}
+
+</tbody>
+</table>

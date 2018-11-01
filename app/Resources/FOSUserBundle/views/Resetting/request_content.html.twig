@@ -1,0 +1,27 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+<div class="login-logo">
+    <a href="{{ app_config.app_website }}"><b>{{ app_config.app_name }}</b></a>
+</div>
+<div class="login-box-body">
+    <p class="login-box-msg">Reestablece tu contraseña</p>
+
+    <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+        <div class="form-group has-feedback">
+            <input type="text" class="form-control" id="username" name="username" required="required" placeholder="{{ 'resetting.request.username'|trans }}" autofocus/>
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        </div>
+        <div class="col-xs-2"></div>
+        <div class="col-xs-8">
+            <input type="submit" class="btn btn-primary btn-block btn-flat" id="_submit" name="_submit" value="{{ 'resetting.request.submit'|trans }}" />
+        </div>
+    </form>
+    <br/><br/><br/>
+    <div class="row">
+        <div align="center">
+            <a href="{{ path("fos_user_security_login") }}" class="to_register"> Ir a inicio de sesión </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% set route = app.request.attributes.get('_route') %}
+
+{% set personMenu = ['person','person_elegible','person_show','person_new','person_edit'] %}
+{% set sorteoMenu = ['sorteo','sorteo_elegible','sorteo_show','sorteo_new','sorteo_edit'] %}
+{% set redeemMenu = ['redeem_code'] %}
+{#
+{% set medsMenu = ['meds','meds_elegible','meds_show','meds_new','meds_edit'] %}
+{% set consultationMenu = ['consultation','consultation_elegible','consultation_show','consultation_new','consultation_edit'] %}
+{% set testMenu = ['test','test_elegible','test_show','test_new','test_edit'] %}
+
+{% set recepcionPagoMenu = ['recepcion_pago','recepcion_pago_elegible','recepcion_pago_show','recepcion_pago_new','recepcion_pago_edit'] %}
+{% set recepcionTecnicoMenu = ['recepcion_tecnico','recepcion_tecnico_elegible','recepcion_tecnico_show','recepcion_tecnico_new','recepcion_tecnico_edit'] %}
+{% set proveedorMenu = ['proveedor','proveedor_elegible','proveedor_show','proveedor_new','proveedor_edit'] %}
+{% set unidadMenu = ['unidad','unidad_elegible','unidad_show','unidad_new','unidad_edit'] %}
+{% set lineaTrabajoMenu = ['linea_trabajo','linea_trabajo_elegible','linea_trabajo_show','linea_trabajo_new','linea_trabajo_edit'] %}
+#}
+
+
+{# {% if not is_granted({"ROLE_MANAGER":"ROLE_USER"}) or is_granted("ROLE_ADMIN") %} #}
+{% if is_granted("ROLE_USER") %}
+{% if not is_granted({"ROLE_MANAGER":"ROLE_USER"}) or is_granted("ROLE_ADMIN") %}<li class="header">GENERAL</li>{% endif %}
+<li class="{% if route!='app_estadisticas' %}not-{% endif %}current"><a href="{{ path('app_estadisticas') }}">{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CHIEF') %}<i class="fa fa-bar-chart-o"></i>{% endif %} <span class="menu-title">Estadísticas</span></a></li>
+{# <li class="{% if route not in personMenu %}not-{% endif %}current"><a href="{{ path('person') }}"><i class="fa fa-user"></i> <span class="menu-title">Personas</span></a></li> #}
+<li class="{% if route not in sorteoMenu %}not-{% endif %}current"><a href="{{ path('sorteo') }}">{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CHIEF') %}<i class="fa fa-random"></i>{% endif %} <span class="menu-title">Sorteos</span></a></li>
+<li class="{% if route not in redeemMenu %}not-{% endif %}current"><a href="{{ path('redeem_code') }}">{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CHIEF') %}<i class="fa fa-credit-card"></i>{% endif %} <span class="menu-title">Recarga</span></a></li>
+</li>
+{#
+<li class="{% if route not in consultationMenu %}not-{% endif %}current"><a href="{{ path('consultation') }}"><span class="glyphicon glyphicon-list-alt block"></span> <span class="menu-title">Consultations</span></a></li>
+<li class="{% if route not in testMenu %}not-{% endif %}current"><a href="{{ path('test') }}"><span class="glyphicon glyphicon-file block"></span> <span class="menu-title">Examens</span></a></li>
+#}
+{% endif %}
+{#
+{% if is_granted("ROLE_MANAGER") %}
+<li class="{% if route not in medsMenu %}not-{% endif %}current"><a href="{{ path('meds') }}"><span class="glyphicon glyphicon-leaf block"></span> <span class="menu-title">Medicaments</span></a></li>
+{% endif %}
+#}
+
+{#
+{% if is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
+    <li class="{% if route not in recepcionTecnicoMenu %}not-{% endif %}current"><a href="{{ path('recepcion_tecnico') }}"><span class="glyphicon glyphicon-pencil block"></span> <span class="menu-title">Recep Tec</span></a>
+{% endif %}
+
+{% if is_granted("ROLE_ADMIN") %}
+    <li class="{% if route not in recepcionPagoMenu %}not-{% endif %}current"><a href="{{ path('recepcion_pago') }}"><span class="glyphicon glyphicon-list-alt block"></span> <span class="menu-title">Recepción</span></a>
+    </li>
+    <li class="{% if route not in proveedorMenu %}not-{% endif %}current"><a href="{{ path('proveedor') }}"><span class="glyphicon glyphicon-briefcase block"></span> <span class="menu-title">Proveedor</span></a>
+    </li>
+    <li class="{% if route not in unidadMenu %}not-{% endif %}current"><a href="{{ path('unidad') }}"><span class="glyphicon glyphicon-tower block"></span> <span class="menu-title">Unidad</span></a>
+    </li>
+    <li class="{% if route not in lineaTrabajoMenu %}not-{% endif %}current"><a href="{{ path('linea_trabajo') }}"><span class="glyphicon glyphicon-stats block"></span> <span class="menu-title">Línea trabajo</span></a>
+    </li>
+{% endif %}
+#}
+{# <li class="not-current"><a href="#" id="trigger-shelf"><span class="glyphicon glyphicon-chevron-left block"></span>  <span class="menu-title">Collapse menu</span></a></li> #}

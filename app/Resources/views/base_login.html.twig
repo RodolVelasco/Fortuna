@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Fortuna{% endblock %}</title>
+        <!-- Bootstrap -->
+        <link href="{{ asset('gentelella/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link href="{{ asset('gentelella/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+        <!-- NProgress -->
+        <link href="{{ asset('gentelella/nprogress/nprogress.css') }}" rel="stylesheet">
+        <!-- iCheck -->
+        <link href="{{ asset('gentelella/iCheck/skins/flat/green.css') }}" rel="stylesheet">
+
+        <!-- bootstrap-progressbar -->
+        <link href="{{ asset('gentelella/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet">
+        <!-- JQVMap -->
+        <link href="{{ asset('gentelella/jqvmap/dist/jqvmap.min.css') }}" rel="stylesheet"/>
+        <!-- bootstrap-daterangepicker -->
+        <link href="{{ asset('gentelella/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
+
+        {% block stylesheets_1 %}{% endblock %}
+
+        <!-- Custom Theme Style -->
+        <link href="{{ asset('gentelella/build/css/custom.min.css') }}" rel="stylesheet">
+        {% block stylesheets_2 %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body class="login">
+      {% block body %}{% endblock %}
+
+      <!-- jQuery -->
+      <script src="{{ asset('gentelella/jquery/dist/jquery.min.js') }}"></script>
+      <!-- Bootstrap -->
+      <script src="{{ asset('gentelella/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+      <!-- FastClick -->
+      <script src="{{ asset('gentelella/fastclick/lib/fastclick.js') }}"></script>
+      <!-- NProgress -->
+      <script src="{{ asset('gentelella/nprogress/nprogress.js') }}"></script>
+      <!-- bootstrap-progressbar -->
+      <script src="{{ asset('gentelella/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script>
+      <!-- select2 -->
+      <script src="{{ asset('gentelella/select2/dist/js/select2.full.min.js') }}"></script>
+
+      {% block javascripts_1 %}{% endblock %}
+      <!-- Custom Theme Scripts -->
+      <script src="{{ asset('gentelella/build/js/custom.min.js') }}"></script>
+      {% block javascripts_2 %}{% endblock %}
+    </body>
+</html>

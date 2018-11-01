@@ -1,0 +1,42 @@
+eventosinstitucionales:
+    path:  /
+    defaults: { _controller: "AppBundle:EventosInstitucionales:index" }
+
+eventosinstitucionales_show:
+    path:  /{id}/show
+    defaults: { _controller: "AppBundle:EventosInstitucionales:show" }
+
+eventosinstitucionales_new:
+    path:  /new
+    defaults: { _controller: "AppBundle:EventosInstitucionales:new" }
+
+eventosinstitucionales_create:
+    path:  /create
+    defaults: { _controller: "AppBundle:EventosInstitucionales:create" }
+    requirements: { _method: post }
+
+eventosinstitucionales_edit:
+    path:  /{id}/edit
+    defaults: { _controller: "AppBundle:EventosInstitucionales:edit" }
+
+eventosinstitucionales_update:
+    path:  /{id}/update
+    defaults: { _controller: "AppBundle:EventosInstitucionales:update" }
+    requirements: { _method: post|put }
+
+eventosinstitucionales_delete:
+    path:  /{id}/delete
+    defaults: { _controller: "AppBundle:EventosInstitucionales:delete" }
+    requirements: { _method: post|delete }
+    
+eventosinstitucionales_by_id_delete:
+    path:  /delete/{id}
+    defaults: { _controller: "AppBundle:EventosInstitucionales:deleteById" }
+    requirements: { _method: get }
+    
+
+eventosinstitucionales_bulk_action:
+    path:  /bulk-action
+    defaults: { _controller: "AppBundle:EventosInstitucionales:bulk" }
+    requirements: { _method: post }
+    

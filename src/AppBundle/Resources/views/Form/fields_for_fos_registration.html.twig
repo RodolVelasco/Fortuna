@@ -1,0 +1,97 @@
+{% extends 'form_div_layout.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block form_widget_simple %}
+{% spaceless %}
+	{% set type = type|default('text') %}
+		{# <!-- <div> --> #}
+      {% if label is empty %}
+        {% set label = name|humanize %}
+      {% endif %}
+	  		<input placeholder="{{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}" class="form-control"  id="{{ id }}" type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %} />
+			{% if ("first" in id) %}
+			<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+			{% endif %}
+			{% if ("second" in id) %}
+			<span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+			{% endif %}
+			{% if ("email" in id) %}
+			<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+			{% endif %}
+			{% if ("username" in id) %}
+			<span class="glyphicon glyphicon-user form-control-feedback"></span>
+			{% endif %}
+			{% if ("_nombre" in id) %}
+			<span class="glyphicon glyphicon-list-alt form-control-feedback"></span>
+			{% endif %}
+			{% if ("_apellido" in id) %}
+			<span class="glyphicon glyphicon-list-alt form-control-feedback"></span>
+			{% endif %}
+			{% if ("_dui" in id) %}
+			<span class="glyphicon glyphicon-credit-card form-control-feedback"></span>
+			<p class="help-block" style="font-size:12px;">Formato de ejemplo DUI: 02146433-2</p>
+			{% endif %}
+			{% if ("_telefono" in id) %}
+			<span class="glyphicon glyphicon-earphone form-control-feedback"></span>
+			<p class="help-block" style="font-size:12px;">Formato de ejemplo teléfono: 2244-8844</p>
+			{% endif %}
+			{% if ("_fechaNacimiento" in id) %}
+			<span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+			<p class="help-block" style="font-size:12px;">Formato de ejemplo fecha: 1985-12-25</p>
+			{% endif %}
+
+	  {# <!-- </div> --> #}
+{% endspaceless %}
+{% endblock form_widget_simple %}
+
+{% block form_row %}
+{% spaceless %}
+	<div class="form-group has-feedback {% if errors|length > 0 %}has-error{% endif %}">
+    {# {{ form_label(form) }} #}
+    {{ form_widget(form) }}
+    {{ form_errors(form) }}
+  </div>
+{% endspaceless %}
+{% endblock form_row %}
+
+{%- block checkbox_widget -%}
+    	<input type="checkbox" data-toggle="toggle" data-onstyle="success" data-size="small" data-offstyle="info" data-on="Masculino" data-off="Femenino" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+{%- endblock checkbox_widget -%}
+
+{%- block choice_widget_collapsed -%}
+    {%- if required and placeholder is none and not placeholder_in_choices and not multiple and (attr.size is not defined or attr.size <= 1) -%}
+        {% set required = false %}
+    {%- endif -%}
+    <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %} class="form-control select2" style="width: 100%;" data-placeholder="Seleccione departamento/municipio">
+        {%- if placeholder is not none -%}
+            <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ placeholder != '' ? (translation_domain is same as(false) ? placeholder : placeholder|trans({}, translation_domain)) }}</option>
+        {%- endif -%}
+        {%- if preferred_choices|length > 0 -%}
+            {% set options = preferred_choices %}
+            {{- block('choice_widget_options') -}}
+            {%- if choices|length > 0 and separator is not none -%}
+                <option disabled="disabled">{{ separator }}</option>
+            {%- endif -%}
+        {%- endif -%}
+        {%- set options = choices -%}
+        {{- block('choice_widget_options') -}}
+    </select>
+{%- endblock choice_widget_collapsed -%}
+
+{% block form_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+    <span class="help-block">
+    <ul>
+        {% for error in errors %}
+            <li>{{
+                error.messagePluralization is null
+                    ? error.messageTemplate|trans(error.messageParameters, 'validators')
+                    : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
+            }}</li>
+        {% endfor %}
+    </ul>
+</span>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_errors %}

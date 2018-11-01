@@ -1,0 +1,20 @@
+<div class="form-group ">
+    <label class="col-md-4 control-label" for="cantidadCodigo" class="required">
+        Cantidad de códigos a crear
+    </label>
+    <div class="col-md-4">
+        <select id="cantidadCodigo" name="cantidadCodigo" class="form-control">
+            <option value="1">1 recarga</option>
+            <option value="3">3 recargas</option>
+            <option value="5">5 recargas</option>
+            <option value="10">10 recargas</option>
+            <option value="25">25 recargas</option>
+            <option value="50">50 recargas</option>
+        </select>
+    </div>
+</div>
+{{ form_row(form.recarga) }}
+{{ form_row(form.precio) }}
+{{ form_row(form.tipoPagoPorMonedero) }}
+{{ form_row(form.estado) }}
+{{ form_rest(form) }}

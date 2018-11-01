@@ -1,0 +1,55 @@
+sorteo:
+    path:     /
+    defaults: { _controller: "AppBundle:Sorteo:index" }
+
+sorteo_ajax:
+    path:     /ajaxlist
+    defaults: { _controller: "AppBundle:Sorteo:ajaxList" }
+    requirements: { _method: post }
+
+sorteo_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Sorteo:show" }
+
+sorteo_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Sorteo:new" }
+
+sorteo_create:
+    path:     /create
+    defaults: { _controller: "AppBundle:Sorteo:create" }
+    requirements: { _method: post }
+
+sorteo_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Sorteo:edit" }
+
+sorteo_update:
+    path:     /{id}/update
+    defaults: { _controller: "AppBundle:Sorteo:update" }
+    requirements: { _method: post|put }
+
+sorteo_participa:
+    path:     /{id}/participa
+    defaults: { _controller: "AppBundle:Sorteo:participa" }
+
+sorteo_participa_ajax:
+    path:     /participaAjax/{id}
+    defaults: { _controller: "AppBundle:Sorteo:participaAjax" }
+    requirements: { _method: post }
+
+sorteo_participa_ajax_post:
+    path:     /participaAjaxPost/{id}
+    defaults: { _controller: "AppBundle:Sorteo:participaAjaxPost" }
+    requirements: { _method: post }
+    
+sorteo_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Sorteo:delete" }
+    requirements: { _method: post|delete }
+
+sorteo_remove:
+    path:     /remove
+    defaults: { _controller: "AppBundle:Sorteo:remove" }
+    requirements: { _method: post|delete }
+    
